@@ -2,14 +2,6 @@ extends Node2D
 
 var pokemon
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func executa(delta: float):
 	pass
@@ -24,16 +16,44 @@ func ajustaTamanho(proporcao):
 	print(tamanhoAjuste)
 	print(tamanhoAjuste*tamanho)
 
-func definePokemon(pkm):
-	if(pkm!=null):
-		pokemon=pkm
-	$telaDescricao/editNo.text=str(pokemon.ID)
+func defineTelaDescricao():
+	$telaDescricao/editNo.text=Ferramentas.formataNumero(pokemon.racaID)
 	$telaDescricao/editName.text=pokemon.apelido
 	$telaDescricao/editOT.text="TesteOT"
 	$telaDescricao/editIDNo.text="TesteIDNo"
-	$telaDescricao/editItem.text=pokemon.item['name']
+	if(pokemon.item):
+		$telaDescricao/editItem.text=Ferramentas.formataNome(pokemon.item['name'])
+	else:
+		$telaDescricao/editItem.text=""
+	$telaDescricao/Tipo1.frame=pokemon.tipo[0]
+	if(pokemon.tipo[1]== null):
+		$telaDescricao/Tipo2.visible=false
+	else:
+		$telaDescricao/Tipo2.visible=true
+		$telaDescricao/Tipo2.frame=pokemon.tipo[1]
+
+func defineTelaAtributos():
+	$telaAtributos/editHP.text=str(pokemon.getVidaAtual())+"/"+str(pokemon.getAtributoReal(VG.ATRIBUTO_VIDA))
+	$telaAtributos/editAtk.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_ATAQUE))
+	$telaAtributos/editDef.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_DEFESA))
+	$telaAtributos/editSpAtk.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_ESPECIAL_ATAQUE))
+	$telaAtributos/editSpDef.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_ESPECIAL_DEFESA))
+	$telaAtributos/editSpeed.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_VELOCIDADE))
+	$telaAtributos/editExp.text=str(pokemon.exp)
+	$telaAtributos/editNextLv.text=str("CALCULAR NO FUTURO")
+	$telaAtributos/editAbility.text=pokemon.getHabilidadeNome()
+	$telaAtributos/editAbilityDescricao.text=pokemon.getHabilidadeDescricao()
+
+func definePokemonScreem():
+	$pokemonScreem/Cabecalho/editEspecie.text=Ferramentas.formataNome(pokemon.raca)
+	$pokemonScreem/Cabecalho/editLV.text="LV."+str(pokemon.lv)
+
+func definePokemon(pkm):
+	if(pkm!=null):
+		pokemon=pkm
+		
+	defineTelaDescricao()
+	defineTelaAtributos()
 	
-	$pokemonScreem/editEspecie.text=pokemon.raca
-	$pokemonScreem/editLV.text="LV."+str(pokemon.lv)
-	
+	definePokemonScreem()
 	

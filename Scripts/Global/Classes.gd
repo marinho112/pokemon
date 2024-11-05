@@ -9,6 +9,7 @@ class personagem:
 	var item_select:int
 	var persona:int
 	var cidadeNatal:String
+	var pkms=[]
 
 class pokemon:
 	var raca:String
@@ -35,6 +36,7 @@ class pokemon:
 	var lvMinEvolui=100
 	var lvMaxEvolui=100 
 	var armas=[]
+	var danoRecebido=0
 	
 	var hp:int
 	var atak:int
@@ -108,8 +110,10 @@ class pokemon:
 			resp += "Ataque"+str(i)+": " + str(ataque) + "\n"
 		if(i==0):
 			resp += "Ataques: Nenhum\n"
-		
-		resp += "Item: " + str(item['name']) + "\n"
+		if(item):
+			resp += "Item: " + str(item['name']) + "\n"
+		else:
+			resp += "Item: Nenhum\n"
 		resp += "EV HP: " + str(ev_hp) + "\n"
 		resp += "EV Ataque: " + str(ev_atak) + "\n"
 		resp += "EV Ataque Especial: " + str(ev_sp_atak) + "\n"
@@ -154,7 +158,7 @@ class pokemon:
 		# Tipos
 		if json.has("types"):
 			for i in range(min(json["types"].size(), 2)):
-				tipo[i] = json["types"][i]
+				tipo[i] = Ferramentas.getTipoID(json["types"][i])
 		
 	func getRandomHabilit():
 		var habilidades = json.get("abilities", [])
@@ -232,6 +236,13 @@ class pokemon:
 		
 		return resp
 	
+	func getVidaAtual():
+		var vidaAtual=getAtributoReal(VG.ATRIBUTO_VIDA)
+		vidaAtual-=danoRecebido
+		if(vidaAtual<0):
+			return 0
+		return vidaAtual
+	
 	func getDesenvolvimento():
 		return int((forca[1]+resistencia[1])/10)
 	
@@ -258,3 +269,9 @@ class pokemon:
 			if(item[0]==arma):
 				return item[1]
 		return 0
+
+	func getHabilidadeNome():
+		return "Não Programado"
+		
+	func getHabilidadeDescricao():
+		return "Ainda Não Foi Programado"

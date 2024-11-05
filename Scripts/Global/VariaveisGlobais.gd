@@ -62,20 +62,20 @@ const MOVIMENTOS = ["correr", "pular"]
 
 #TIPOS
 
-const TIPO_PEDRA = 0
-const TIPO_AGUA = 1
-const TIPO_ELETRICO = 2
-const TIPO_PLANTA = 3
-const TIPO_PSIQUICO = 4
-const TIPO_VENENO = 5
-const TIPO_FOGO = 6
-const TIPO_TERRA = 7
-const TIPO_VOADOR = 8
-const TIPO_INSETO = 9
-const TIPO_NORMAL = 10
-const TIPO_FANTASMA = 11
-const TIPO_LUTADOR = 12
-const TIPO_METAL = 13
+const TIPO_PEDRA = 5
+const TIPO_AGUA = 10
+const TIPO_ELETRICO = 12
+const TIPO_PLANTA = 11
+const TIPO_PSIQUICO = 13
+const TIPO_VENENO = 3
+const TIPO_FOGO = 9
+const TIPO_TERRA = 4
+const TIPO_VOADOR = 2
+const TIPO_INSETO = 6
+const TIPO_NORMAL = 0
+const TIPO_FANTASMA = 7
+const TIPO_LUTADOR = 1
+const TIPO_METAL = 8
 const TIPO_GELO = 14
 const TIPO_DRAGAO = 15
 const TIPO_SOMBRIO = 16

@@ -24,10 +24,11 @@ func _ready():
 	$Camera2D/MSGScreen.visible=false;
 	$Camera2D/OptionScreen.visible=false;
 	posicionar()
-	var pkm= Ferramentas.getPokemon(263)
+	var pkm= Ferramentas.getPokemon(267)
 	pkm.carregaCaracteristicas()
 	pkm.getRandomHabilit()
 	pkm.getRandomItem()
+	personagemInfo.pkms.append(pkm)
 	pkm.imprime()
 
 func set_posicao( novaPosicao):

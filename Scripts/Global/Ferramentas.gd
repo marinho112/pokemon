@@ -107,3 +107,57 @@ func getPokemonCaracteristicasJson(id:int):
 		else:
 			print("Erro ao abrir o arquivo: ", caracteristicasData)
 		return json
+
+func getTipoID(nomeTipo):
+	match nomeTipo:
+		"water":
+			return VG.TIPO_AGUA
+		"dragon":
+			return VG.TIPO_DRAGAO
+		"electric":
+			return VG.TIPO_ELETRICO
+		"ghost":
+			return VG.TIPO_FANTASMA
+		"fire":
+			return VG.TIPO_FOGO
+		"ice":
+			return VG.TIPO_GELO
+		"bug":
+			return VG.TIPO_INSETO
+		"fight":
+			return VG.TIPO_LUTADOR
+		"steel":
+			return VG.TIPO_METAL
+		"normal":
+			return VG.TIPO_NORMAL
+		"rock":
+			return VG.TIPO_PEDRA
+		"grass":
+			return VG.TIPO_PLANTA
+		"psychic":
+			return VG.TIPO_PSIQUICO
+		"dark":
+			return VG.TIPO_SOMBRIO
+		"ground":
+			return VG.TIPO_TERRA
+		"poison":
+			return VG.TIPO_VENENO
+		"flying":
+			return VG.TIPO_VOADOR
+	
+func formataNome(nome):
+	var novoNome= nome.replace("-", " ")
+	var palavras = novoNome.split(" ")
+	var resp=""
+	for i in range(palavras.size()):
+		resp += palavras[i].capitalize()+" "
+	return resp
+
+func formataNumero(num):
+	var str=''
+	if(num<100):
+		str+="0"
+	if(num<10):
+		str+="0"
+	str+=str(num)
+	return str
