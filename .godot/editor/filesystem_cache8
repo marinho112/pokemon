@@ -1,0 +1,90 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1730816604
+icon.svg::CompressedTexture2D::4959049660327054204::1726682565::1726682581::1::::<><>::
+main_node.tscn::PackedScene::641826591873654601::1730316663::0::1::::<><>::uid://cmhj6lcb4hwc1::::res://Nodes/Mapas/Cidades/map_pallet.tscn<>uid://62fe6fqrx58y::::res://Nodes/Objetos/personagem.tscn<>uid://cm6dekvtcwvxy::::res://Nodes/Menus/atlas_texture_Interface.tres<>res://Scripts/Objetos/globais/camera_2d.gd<>uid://bb81m6oegxnoi::::res://Nodes/Menus/atlas_texture_Interface_opcao.tres<>res://Scripts/Objetos/NPCs/option_screen_Npc.gd<>uid://chtork64v5qua::::res://assets/menus/Interface & Bag Screens.png
+::res://assets/::1729079354
+::res://assets/menus/::1730316654
+HP Bars & In-battle Menu.png::CompressedTexture2D::796746678149086644::1728925751::1728925758::1::::<><>::
+Interface & Bag Screens.png::CompressedTexture2D::5304267421044005256::1727630646::1727630646::1::::<><>::
+mainMenu.png::CompressedTexture2D::3612242619511171682::1728927141::1728927141::1::::<><>::
+Pokemon Summary Menu.png::CompressedTexture2D::3979703359892099721::1729075650::1729075650::1::::<><>::
+subFundo242x144.png::CompressedTexture2D::7361737573866932865::1730316645::1730316654::1::::<><>::
+::res://assets/menus/imagemBotoes/::1727818161
+nao.png::CompressedTexture2D::118257085160076456::1727818143::1727818161::1::::<><>::
+sim.png::CompressedTexture2D::2268557465928524171::1727818159::1727818161::1::::<><>::
+::res://assets/menus/recursos/::1729078362
+gender.png::CompressedTexture2D::6855307178787632664::1729078348::1729078362::1::::<><>::
+::res://assets/NPCs/::1727696760
+Overworld NPCs.png::CompressedTexture2D::7090823342289997008::1727696760::1727696760::1::::<><>::
+::res://assets/Personagens/::1727210107
+Game Boy Advance - Pokemon FireRed LeafGreen - Hero.png::CompressedTexture2D::2937678602048174887::1727210107::1727210107::1::::<><>::
+::res://assets/pokemons/::1729079364
+Pokemon 1st 3rd Generation.png::CompressedTexture2D::2664732817072304041::1729079363::1729079364::1::::<><>::
+::res://assets/recursos/::1727638797
+eventos.png::CompressedTexture2D::7462878059897744452::1727638789::1727638797::1::::<><>::
+permissões.png::CompressedTexture2D::4873480754327364310::1727472648::1727472648::1::::<><>::
+::res://assets/Wold/::1727210101
+full_johto_gen_3_tileset_essentials.png::CompressedTexture2D::1173814034071064185::1727192886::1727210101::1::::<><>::
+gen_3_set.png::CompressedTexture2D::3795577234692285492::1727187208::1727210100::1::::<><>::
+little_office.png::CompressedTexture2D::4047155036042533466::1727187208::1727210100::1::::<><>::
+palletTree.png::CompressedTexture2D::1575947370204229064::1727205013::1727210100::1::::<><>::
+snowy_train_outdoors.png::CompressedTexture2D::3754698161124599728::1727187208::1727210100::1::::<><>::
+thistle_town.png::CompressedTexture2D::5872352357387276004::1727187208::1727210100::1::::<><>::
+tulip_mansion.png::CompressedTexture2D::923909228685592040::1727187208::1727210100::1::::<><>::
+venice_indoors.png::CompressedTexture2D::6819284955523739146::1727187208::1727210100::1::::<><>::
+venice_outdoors.png::CompressedTexture2D::8569087938420407273::1727187208::1727210100::1::::<><>::
+::res://dados/::1728925757
+ability_DB.txt::TextFile::-1::1728512978::0::1::::<><>::
+caracteristicas_DB.txt::TextFile::-1::1728829854::0::1::::<><>::
+item_DB.txt::TextFile::-1::1728512979::0::1::::<><>::
+move_DB.txt::TextFile::-1::1728512980::0::1::::<><>::
+pokemon_DB.txt::TextFile::-1::1728832265::0::1::::<><>::
+::res://Nodes/::1728912451
+::res://Nodes/Mapas/::1727190502
+::res://Nodes/Mapas/Cidades/::1730316663
+map_pallet.tscn::PackedScene::5630160528797909342::1730316663::0::1::::<><>::res://Scripts/Mapas/baseMap.gd<>uid://bn6i3wvmobynf::::res://Nodes/TileSets/tileSet.tres<>uid://dswpj3th63wlv::::res://Nodes/TileSets/permissionTileSet.tres<>uid://c0te307o0nb2j::::res://Nodes/TileSets/eventsTileSet.tres
+::res://Nodes/Menus/::1730316663
+atlas_texture_Interface.tres::AtlasTexture::5679293054113592426::1727703404::0::1::::<><>::uid://chtork64v5qua::::res://assets/menus/Interface & Bag Screens.png
+atlas_texture_Interface_opcao.tres::AtlasTexture::2526335714595688368::1727703404::0::1::::<><>::uid://chtork64v5qua::::res://assets/menus/Interface & Bag Screens.png
+mainMenu.tscn::PackedScene::5121193107183092232::1729075005::0::1::::<><>::res://Scripts/Menus/main_menu.gd<>uid://ll7kins58l6c::::res://assets/menus/HP Bars & In-battle Menu.png<>uid://sovoy8yddp1e::::res://Nodes/Menus/opcaoMainMenu.tscn
+menu_pokemon.tscn::PackedScene::5564923507196896842::1730316663::0::1::::<><>::uid://bwx2ervlayqsf::::res://assets/menus/Pokemon Summary Menu.png<>res://Scripts/Menus/menu_pokemon.gd<>uid://c4w054i0bbo2s::::res://assets/menus/recursos/gender.png<>uid://o0rw0miyrnht::::res://Nodes/TileSets/atlas_texture_Tipos.tres<>uid://dc5c0icrf3s8h::::res://assets/menus/subFundo242x144.png<>uid://bd720306al17j::::res://assets/pokemons/Pokemon 1st 3rd Generation.png
+opcaoMainMenu.tscn::PackedScene::1293601844637728572::1729075006::0::1::::<><>::uid://brp2dxchwcwus::::res://assets/menus/mainMenu.png
+::res://Nodes/Objetos/::1730313972
+personagem.tscn::PackedScene::2231904716976570618::1728938280::0::1::::<><>::res://Scripts/Objetos/personagem.gd<>uid://bh4bew2n36hwh::::res://assets/Personagens/Game Boy Advance - Pokemon FireRed LeafGreen - Hero.png
+::res://Nodes/Objetos/eventos/::1728938280
+evento_ao_tocar.tscn::PackedScene::3993008524386782952::1728938280::0::1::::<><>::res://Scripts/Objetos/eventos/evento_ao_tocar.gd
+evento_msg_on_clik.tscn::PackedScene::5822904226910685675::1728938280::0::1::::<><>::uid://delcrncneosmu::::res://assets/recursos/eventos.png<>res://Scripts/Objetos/eventos/evento_msg_on_clik.gd
+::res://Nodes/Objetos/globais/::1730313972
+::res://Nodes/Objetos/NPCs/::1728938280
+evento_npc.tscn::PackedScene::6745436979193080683::1728938280::0::1::::<><>::res://Scripts/Objetos/NPCs/evento_npc.gd<>uid://c8a33bc1uxpcy::::res://assets/NPCs/Overworld NPCs.png
+::res://Nodes/TileSets/::1730312192
+atlas_texture_Tipos.tres::AtlasTexture::1035326063144530877::1729080755::0::1::::<><>::uid://bwx2ervlayqsf::::res://assets/menus/Pokemon Summary Menu.png
+eventsTileSet.tres::TileSet::6567079869052062683::1730312192::0::1::::<><>::uid://co7wm8poly6s2::::res://Nodes/Objetos/eventos/evento_msg_on_clik.tscn<>uid://c3dsmj6pb5cb8::::res://Nodes/Objetos/NPCs/evento_npc.tscn
+permissionTileSet.tres::TileSet::8469005874555530835::1730312192::0::1::::<><>::uid://cbo0rsq3qabny::::res://assets/recursos/permissões.png
+tileSet.tres::TileSet::3363408288053441095::1730312192::0::1::::<><>::uid://bucuuqrh7w7gy::::res://assets/Wold/gen_3_set.png<>uid://duc6vkdqwhpkb::::res://assets/Wold/venice_outdoors.png<>uid://qyuss1a0wdbl::::res://assets/Wold/full_johto_gen_3_tileset_essentials.png<>uid://wpnvgd8dtmk3::::res://assets/Wold/palletTree.png<>uid://bxwqb1jt0etb3::::res://assets/Wold/little_office.png<>uid://btq2lhwbi0s1m::::res://assets/Wold/snowy_train_outdoors.png<>uid://cpwu1x48gqqv1::::res://assets/Wold/thistle_town.png<>uid://nfswdob60j4s::::res://assets/Wold/tulip_mansion.png<>uid://c4fkvkx8a7bt7::::res://assets/Wold/venice_indoors.png
+::res://Pokemon/::1730816502
+README.md::TextFile::-1::1730816502::0::1::::<><>::
+::res://Scripts/::1728927353
+::res://Scripts/Global/::1730313516
+Acoes.gd::GDScript::-1::1727905827::0::1::::<>Node<>::
+Classes.gd::GDScript::-1::1728912288::0::1::::<>Node<>::
+Eventos.gd::GDScript::-1::1727907856::0::1::::<>Node<>::
+Ferramentas.gd::GDScript::-1::1728912288::0::1::::<>Node<>::
+Options.gd::GDScript::-1::1730313516::0::1::::<>Node<>::
+TextoPlacas.gd::GDScript::-1::1727696387::0::1::::<>Node<>::
+VariaveisGlobais.gd::GDScript::-1::1728938686::0::1::::<>Node<>::
+::res://Scripts/Mapas/::1727703538
+baseMap.gd::GDScript::-1::1727703538::0::1::::<>Node2D<>::
+::res://Scripts/Menus/::1730315746
+main_menu.gd::GDScript::-1::1729074573::0::1::::<>Node2D<>::
+menu_pokemon.gd::GDScript::-1::1730315746::0::1::::<>Node2D<>::
+::res://Scripts/Objetos/::1730313995
+personagem.gd::GDScript::-1::1729074727::0::1::::<>CharacterBody2D<>::
+::res://Scripts/Objetos/eventos/::1727907910
+evento_ao_tocar.gd::GDScript::-1::1727907910::0::1::::<><>::
+evento_msg_on_clik.gd::GDScript::-1::1727701168::0::1::::<><>::
+::res://Scripts/Objetos/globais/::1730314923
+camera_2d.gd::GDScript::-1::1730314923::0::1::::<>Camera2D<>::
+::res://Scripts/Objetos/NPCs/::1728929752
+evento_npc.gd::GDScript::-1::1727907801::0::1::::<><>::
+option_screen_Npc.gd::GDScript::-1::1728929752::0::1::::<>Sprite2D<>::

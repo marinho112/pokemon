@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce70kjoaond25"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/main_menu.gd" id="1_pg84b"]
+[ext_resource type="Texture2D" uid="uid://ll7kins58l6c" path="res://assets/menus/HP Bars & In-battle Menu.png" id="1_rpcen"]
+[ext_resource type="PackedScene" uid="uid://sovoy8yddp1e" path="res://Nodes/Menus/opcaoMainMenu.tscn" id="2_2b5ml"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o6ph"]
+atlas = ExtResource("1_rpcen")
+region = Rect2(269, 4, 6, 10)
+
+[node name="Menu" type="Node2D"]
+z_index = 2
+script = ExtResource("1_pg84b")
+
+[node name="OpcaoModelo" parent="." instance=ExtResource("2_2b5ml")]
+position = Vector2(160, -120)
+
+[node name="Cursor" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(82, -119)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_2o6ph")

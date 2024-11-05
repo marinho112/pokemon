@@ -1,0 +1,13 @@
+Sprite2D
+TextEdit
+Container
+Node2D
+Marker2D
+BoxContainer
+AnimatedSprite2D
+TileMapLayer
+GPUParticlesAttractorSphere3D
+AnimationPlayer
+Camera2D
+CollisionShape2D
+CharacterBody2D

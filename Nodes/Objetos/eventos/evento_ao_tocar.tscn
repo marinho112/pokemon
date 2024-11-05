@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw5ijcwufc4to"]
+
+[ext_resource type="Script" path="res://Scripts/Objetos/eventos/evento_ao_tocar.gd" id="1_fnkyw"]
+
+[node name="evento_ao_tocar" type="Node2D"]
+script = ExtResource("1_fnkyw")

@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3 uid="uid://je514p4r1nn2"]
+
+[ext_resource type="PackedScene" uid="uid://cmhj6lcb4hwc1" path="res://Nodes/Mapas/Cidades/map_pallet.tscn" id="1_1jf0p"]
+[ext_resource type="PackedScene" uid="uid://62fe6fqrx58y" path="res://Nodes/Objetos/personagem.tscn" id="2_x8kyu"]
+[ext_resource type="Texture2D" uid="uid://cm6dekvtcwvxy" path="res://Nodes/Menus/atlas_texture_Interface.tres" id="3_arwbs"]
+[ext_resource type="Script" path="res://Scripts/Objetos/globais/camera_2d.gd" id="3_e3faj"]
+[ext_resource type="Texture2D" uid="uid://bb81m6oegxnoi" path="res://Nodes/Menus/atlas_texture_Interface_opcao.tres" id="4_anaem"]
+[ext_resource type="Script" path="res://Scripts/Objetos/NPCs/option_screen_Npc.gd" id="5_5l4x7"]
+[ext_resource type="Texture2D" uid="uid://chtork64v5qua" path="res://assets/menus/Interface & Bag Screens.png" id="5_6kpsg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvmqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4cmv"]
+atlas = ExtResource("5_6kpsg")
+region = Rect2(291, 57, 10, 6)
+
+[node name="mainNode" type="Node2D"]
+
+[node name="Mapa" type="Node2D" parent="."]
+
+[node name="MapPallet" parent="Mapa" instance=ExtResource("1_1jf0p")]
+
+[node name="Personagem" parent="." instance=ExtResource("2_x8kyu")]
+
+[node name="Camera2D" type="Camera2D" parent="Personagem"]
+script = ExtResource("3_e3faj")
+
+[node name="MSGScreen" type="Sprite2D" parent="Personagem/Camera2D"]
+z_index = 5
+z_as_relative = false
+position = Vector2(0, 120)
+scale = Vector2(2, 1.3)
+texture = ExtResource("3_arwbs")
+
+[node name="TextEdit" type="TextEdit" parent="Personagem/Camera2D/MSGScreen"]
+offset_left = -100.0
+offset_top = -15.0
+offset_right = 500.0
+offset_bottom = 75.0
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vvmqh")
+text = "ISSO é UM TESTE
+sdsdsdsdsdddddddddddddddddddddd"
+
+[node name="OptionScreen" type="Sprite2D" parent="Personagem/Camera2D"]
+position = Vector2(140, 50)
+scale = Vector2(0.551724, 1.81818)
+texture = ExtResource("4_anaem")
+script = ExtResource("5_5l4x7")
+
+[node name="Cursor" type="Sprite2D" parent="Personagem/Camera2D/OptionScreen"]
+position = Vector2(-80, -8)
+rotation = 4.71239
+scale = Vector2(0.55, 1.813)
+texture = SubResource("AtlasTexture_o4cmv")
+
+[node name="OPT1" type="BoxContainer" parent="Personagem/Camera2D/OptionScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -18.0
+offset_right = -23.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OPT2" type="BoxContainer" parent="Personagem/Camera2D/OptionScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -34.0
+offset_right = -23.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OPT3" type="BoxContainer" parent="Personagem/Camera2D/OptionScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -50.0
+offset_right = -23.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OPT4" type="BoxContainer" parent="Personagem/Camera2D/OptionScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -66.0
+offset_right = -23.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OPT5" type="BoxContainer" parent="Personagem/Camera2D/OptionScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -82.0
+offset_right = -23.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2

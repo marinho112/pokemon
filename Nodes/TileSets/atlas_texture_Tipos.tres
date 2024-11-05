@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://o0rw0miyrnht"]
+
+[ext_resource type="Texture2D" uid="uid://bwx2ervlayqsf" path="res://assets/menus/Pokemon Summary Menu.png" id="1_lojlx"]
+
+[resource]
+atlas = ExtResource("1_lojlx")
+region = Rect2(2, 180, 118, 78)

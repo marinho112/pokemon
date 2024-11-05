@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://c3dsmj6pb5cb8"]
+
+[ext_resource type="Script" path="res://Scripts/Objetos/NPCs/evento_npc.gd" id="1_hwr24"]
+[ext_resource type="Texture2D" uid="uid://c8a33bc1uxpcy" path="res://assets/NPCs/Overworld NPCs.png" id="2_h68ew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnkw0"]
+atlas = ExtResource("2_h68ew")
+region = Rect2(5, 9, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f5h8"]
+atlas = ExtResource("2_h68ew")
+region = Rect2(20, 9, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia7nm"]
+atlas = ExtResource("2_h68ew")
+region = Rect2(35, 9, 15, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e76rd"]
+atlas = ExtResource("2_h68ew")
+region = Rect2(50, 9, 15, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2fqh"]
+atlas = ExtResource("2_h68ew")
+region = Rect2(66, 9, 15, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0fxq"]
+atlas = ExtResource("2_h68ew")
+region = Rect2(81, 9, 15, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jshvl"]
+atlas = ExtResource("2_h68ew")
+region = Rect2(94, 9, 15, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e44k6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnkw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f5h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia7nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e76rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2fqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0fxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jshvl")
+}],
+"loop": true,
+"name": &"NPC_Guarda_01",
+"speed": 5.0
+}]
+
+[node name="evento_npc" type="Node2D"]
+script = ExtResource("1_hwr24")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e44k6")
+animation = &"NPC_Guarda_01"

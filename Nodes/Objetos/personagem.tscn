@@ -1,0 +1,196 @@
+[gd_scene load_steps=23 format=3 uid="uid://62fe6fqrx58y"]
+
+[ext_resource type="Script" path="res://Scripts/Objetos/personagem.gd" id="1_5x2tr"]
+[ext_resource type="Texture2D" uid="uid://bh4bew2n36hwh" path="res://assets/Personagens/Game Boy Advance - Pokemon FireRed LeafGreen - Hero.png" id="1_uc5nw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnixj"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ing4x"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(7, 30, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phtqp"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(24, 30, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbd8i"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(41, 30, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umdsa"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(7, 60, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l24vb"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(24, 60, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bvby"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(41, 60, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c0yi"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(6, 95, 17, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wgqy"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(23, 95, 17, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pt8e"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(40, 95, 17, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26bjn"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(65, 32, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddboq"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(80, 32, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2nuh"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(95, 32, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gwql"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(64, 61, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo2n3"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(80, 61, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv8t8"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(96, 61, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_376qx"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(64, 95, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmp8c"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(80, 95, 16, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op2fa"]
+atlas = ExtResource("1_uc5nw")
+region = Rect2(96, 95, 16, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewrnw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ing4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phtqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbd8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phtqp")
+}],
+"loop": true,
+"name": &"Andando_Baixo",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umdsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l24vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bvby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l24vb")
+}],
+"loop": true,
+"name": &"Andando_Cima",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c0yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wgqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pt8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wgqy")
+}],
+"loop": true,
+"name": &"Andando_Lado",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26bjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddboq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2nuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddboq")
+}],
+"loop": true,
+"name": &"Correndo_Baixo",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gwql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo2n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv8t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo2n3")
+}],
+"loop": true,
+"name": &"Correndo_Cima",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_376qx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmp8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op2fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmp8c")
+}],
+"loop": true,
+"name": &"Correndo_Lado",
+"speed": 4.0
+}]
+
+[node name="Personagem" type="CharacterBody2D"]
+script = ExtResource("1_5x2tr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cnixj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(1.7, 1.7)
+sprite_frames = SubResource("SpriteFrames_ewrnw")
+animation = &"Andando_Cima"

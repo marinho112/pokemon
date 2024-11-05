@@ -1,0 +1,14 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://c0te307o0nb2j"]
+
+[ext_resource type="PackedScene" uid="uid://co7wm8poly6s2" path="res://Nodes/Objetos/eventos/evento_msg_on_clik.tscn" id="1_bdv3n"]
+[ext_resource type="PackedScene" uid="uid://c3dsmj6pb5cb8" path="res://Nodes/Objetos/NPCs/evento_npc.tscn" id="1_tgwt3"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_blnmn"]
+scenes/1/scene = ExtResource("1_tgwt3")
+scenes/2/scene = ExtResource("1_bdv3n")
+
+[resource]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "text"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetScenesCollectionSource_blnmn")

@@ -1,0 +1,155 @@
+[gd_scene load_steps=14 format=3 uid="uid://cljxqhswaew5w"]
+
+[ext_resource type="Texture2D" uid="uid://bwx2ervlayqsf" path="res://assets/menus/Pokemon Summary Menu.png" id="1_f76mv"]
+[ext_resource type="Script" path="res://Scripts/Menus/menu_pokemon.gd" id="1_o0vbi"]
+[ext_resource type="Texture2D" uid="uid://c4w054i0bbo2s" path="res://assets/menus/recursos/gender.png" id="2_cysit"]
+[ext_resource type="Texture2D" uid="uid://o0rw0miyrnht" path="res://Nodes/TileSets/atlas_texture_Tipos.tres" id="2_kinnj"]
+[ext_resource type="Texture2D" uid="uid://dc5c0icrf3s8h" path="res://assets/menus/subFundo242x144.png" id="2_rolfi"]
+[ext_resource type="Texture2D" uid="uid://bd720306al17j" path="res://assets/pokemons/Pokemon 1st 3rd Generation.png" id="4_pio8x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ampss"]
+atlas = ExtResource("1_f76mv")
+region = Rect2(2, 181, 242, 144)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c280g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax0ta"]
+atlas = ExtResource("1_f76mv")
+region = Rect2(244, 74, 121, 84)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gs7a3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqyu1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxt3k"]
+atlas = ExtResource("1_f76mv")
+region = Rect2(2, 166, 155, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1qt0"]
+atlas = ExtResource("4_pio8x")
+region = Rect2(12, 46, 62, 62)
+
+[node name="menuPokemon" type="Node2D"]
+script = ExtResource("1_o0vbi")
+
+[node name="telaDescricao" type="Node2D" parent="."]
+
+[node name="subFundo" type="Sprite2D" parent="telaDescricao"]
+texture = ExtResource("2_rolfi")
+
+[node name="fundo" type="Sprite2D" parent="telaDescricao"]
+texture = SubResource("AtlasTexture_ampss")
+
+[node name="Tipo1" type="Sprite2D" parent="telaDescricao"]
+position = Vector2(63, -31.5)
+texture = ExtResource("2_kinnj")
+hframes = 3
+vframes = 6
+frame = 17
+
+[node name="Tipo2" type="Sprite2D" parent="telaDescricao"]
+position = Vector2(98, -31.5)
+texture = ExtResource("2_kinnj")
+hframes = 3
+vframes = 6
+
+[node name="editNo" type="TextEdit" parent="telaDescricao"]
+offset_left = 47.0
+offset_top = -69.0
+offset_right = 187.0
+offset_bottom = -34.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
+text = "123456789ABCD"
+
+[node name="editName" type="TextEdit" parent="telaDescricao"]
+offset_left = 47.0
+offset_top = -54.0
+offset_right = 187.0
+offset_bottom = -19.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
+text = "123456789ABCD"
+
+[node name="editOT" type="TextEdit" parent="telaDescricao"]
+offset_left = 47.0
+offset_top = -24.0
+offset_right = 187.0
+offset_bottom = 11.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
+text = "123456789ABCD"
+
+[node name="editIDNo" type="TextEdit" parent="telaDescricao"]
+offset_left = 47.0
+offset_top = -9.0
+offset_right = 187.0
+offset_bottom = 26.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
+text = "123456789ABCD"
+
+[node name="editItem" type="TextEdit" parent="telaDescricao"]
+offset_left = 47.0
+offset_top = 6.0
+offset_right = 187.0
+offset_bottom = 41.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
+text = "123456789ABCD"
+
+[node name="telaAtributos" type="Node2D" parent="."]
+
+[node name="telaCaracteristicas" type="Node2D" parent="."]
+
+[node name="telaMovimentos" type="Node2D" parent="."]
+
+[node name="pokemonScreem" type="Sprite2D" parent="."]
+position = Vector2(-60.5, -30)
+texture = SubResource("AtlasTexture_ax0ta")
+
+[node name="editLV" type="TextEdit" parent="pokemonScreem"]
+offset_left = -55.0
+offset_top = -42.0
+offset_right = -3.0
+offset_bottom = -12.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gs7a3")
+text = "LV.100"
+
+[node name="editEspecie" type="TextEdit" parent="pokemonScreem"]
+offset_left = -20.0
+offset_top = -42.0
+offset_right = 100.0
+offset_bottom = -12.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wqyu1")
+text = "Crabominable"
+
+[node name="sexo" type="Sprite2D" parent="pokemonScreem"]
+position = Vector2(52, -33)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_cysit")
+vframes = 3
+
+[node name="pokebola" type="Sprite2D" parent="pokemonScreem"]
+position = Vector2(48, 30)
+texture = SubResource("AtlasTexture_xxt3k")
+hframes = 12
+
+[node name="Container" type="Container" parent="pokemonScreem"]
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 30.0
+
+[node name="pokemon" type="Sprite2D" parent="pokemonScreem/Container"]
+position = Vector2(50, 25)
+texture = SubResource("AtlasTexture_a1qt0")
