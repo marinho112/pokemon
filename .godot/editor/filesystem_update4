@@ -1,0 +1,5 @@
+res://Nodes/Menus/menu_pokemon.tscn
+res://Nodes/TileSets/tileSet.tres
+res://Nodes/TileSets/permissionTileSet.tres
+res://Nodes/TileSets/eventsTileSet.tres
+res://Nodes/Menus/menu_pokemon.tres

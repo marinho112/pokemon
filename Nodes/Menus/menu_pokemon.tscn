@@ -1,17 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://cljxqhswaew5w"]
+[gd_scene load_steps=15 format=3 uid="uid://cljxqhswaew5w"]
 
 [ext_resource type="Texture2D" uid="uid://bwx2ervlayqsf" path="res://assets/menus/Pokemon Summary Menu.png" id="1_f76mv"]
 [ext_resource type="Script" path="res://Scripts/Menus/menu_pokemon.gd" id="1_o0vbi"]
 [ext_resource type="Texture2D" uid="uid://c4w054i0bbo2s" path="res://assets/menus/recursos/gender.png" id="2_cysit"]
 [ext_resource type="Texture2D" uid="uid://o0rw0miyrnht" path="res://Nodes/TileSets/atlas_texture_Tipos.tres" id="2_kinnj"]
-[ext_resource type="Texture2D" uid="uid://dc5c0icrf3s8h" path="res://assets/menus/subFundo242x144.png" id="2_rolfi"]
+[ext_resource type="Texture2D" uid="uid://bmnx4dlcafmye" path="res://assets/menus/subFundo240x144.png" id="2_kmlsk"]
+[ext_resource type="Texture2D" uid="uid://dt7btrmiyw02" path="res://Nodes/Menus/menu_pokemon.tres" id="3_5y78h"]
 [ext_resource type="Texture2D" uid="uid://bd720306al17j" path="res://assets/pokemons/Pokemon 1st 3rd Generation.png" id="4_pio8x"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ampss"]
-atlas = ExtResource("1_f76mv")
-region = Rect2(2, 181, 242, 144)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c280g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sa13"]
+atlas = ExtResource("1_f76mv")
+region = Rect2(248.5, 241.5, 239.5, 143.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ax0ta"]
 atlas = ExtResource("1_f76mv")
@@ -32,13 +33,13 @@ region = Rect2(12, 46, 62, 62)
 [node name="menuPokemon" type="Node2D"]
 script = ExtResource("1_o0vbi")
 
+[node name="subFundo" type="Sprite2D" parent="."]
+texture = ExtResource("2_kmlsk")
+
 [node name="telaDescricao" type="Node2D" parent="."]
 
-[node name="subFundo" type="Sprite2D" parent="telaDescricao"]
-texture = ExtResource("2_rolfi")
-
 [node name="fundo" type="Sprite2D" parent="telaDescricao"]
-texture = SubResource("AtlasTexture_ampss")
+texture = ExtResource("3_5y78h")
 
 [node name="Tipo1" type="Sprite2D" parent="telaDescricao"]
 position = Vector2(63, -31.5)
@@ -105,12 +106,19 @@ text = "123456789ABCD"
 
 [node name="telaAtributos" type="Node2D" parent="."]
 
+[node name="fundo" type="Sprite2D" parent="telaAtributos"]
+texture = SubResource("AtlasTexture_4sa13")
+
 [node name="telaCaracteristicas" type="Node2D" parent="."]
+
+[node name="fundo" type="Sprite2D" parent="telaCaracteristicas"]
 
 [node name="telaMovimentos" type="Node2D" parent="."]
 
+[node name="fundo" type="Sprite2D" parent="telaMovimentos"]
+
 [node name="pokemonScreem" type="Sprite2D" parent="."]
-position = Vector2(-60.5, -30)
+position = Vector2(-59.5, -30)
 texture = SubResource("AtlasTexture_ax0ta")
 
 [node name="editLV" type="TextEdit" parent="pokemonScreem"]

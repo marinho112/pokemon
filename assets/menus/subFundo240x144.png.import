@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc5c0icrf3s8h"
-path="res://.godot/imported/subFundo242x144.png-0b9cb2603fb58d98d8f33f86a2f0f385.ctex"
+uid="uid://bmnx4dlcafmye"
+path="res://.godot/imported/subFundo240x144.png-f0b0391f51abf82b1af878934b86c84d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menus/subFundo242x144.png"
-dest_files=["res://.godot/imported/subFundo242x144.png-0b9cb2603fb58d98d8f33f86a2f0f385.ctex"]
+source_file="res://assets/menus/subFundo240x144.png"
+dest_files=["res://.godot/imported/subFundo240x144.png-f0b0391f51abf82b1af878934b86c84d.ctex"]
 
 [params]
 
