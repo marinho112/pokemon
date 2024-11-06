@@ -1,13 +1,10 @@
-res://Nodes/Menus/menu_pokemon.tscn
+res://Nodes/Mapas/Cidades/map_pallet.tscn
 res://Nodes/TileSets/tileSet.tres
 res://Nodes/TileSets/permissionTileSet.tres
 res://Nodes/TileSets/eventsTileSet.tres
-res://Nodes/Menus/menu_pokemon.tres
-res://Scripts/Global/Classes.gd
 res://Scripts/Menus/menu_pokemon.gd
-res://Nodes/Mapas/Cidades/map_pallet.tscn
 res://main_node.tscn
-res://Scripts/Objetos/personagem.gd
-res://Scripts/Global/Options.gd
+res://Nodes/Menus/menu_pokemon.tscn
+res://Scripts/Global/Classes.gd
 res://Scripts/Global/Ferramentas.gd
-res://Scripts/Global/VariaveisGlobais.gd
+res://Scripts/Objetos/personagem.gd

@@ -1,8 +1,47 @@
 extends Node2D
 
 var pokemon
+var posicao=0
 
 
+func visibleOff():
+	$telaAtributos.visible=false
+	$telaCaracteristicas.visible=false
+	$telaMovimentos.visible=false
+	$telaDescricao.visible=false
+	$pokemonScreem/Conteudo.visible=true
+	
+	
+func defPosicao():
+	match posicao:
+		0:
+			visibleOff()
+			$telaDescricao.visible=true
+		1:
+			visibleOff()
+			$telaAtributos.visible=true
+		2:
+			visibleOff()
+			$telaCaracteristicas.visible=true
+		3:
+			visibleOff()
+			$telaMovimentos.visible=true
+			$pokemonScreem/Conteudo.visible=false
+
+func _input(event: InputEvent) -> void:
+	if(Input.is_action_just_pressed("Direita")):
+		posicao+=1
+	elif(Input.is_action_just_pressed("Esquerda")):
+		posicao-=1
+	
+	if(posicao>3):
+		posicao=0
+	if(posicao<0):
+		posicao=3
+	
+	defPosicao()
+	
+		
 func executa(delta: float):
 	pass
 	

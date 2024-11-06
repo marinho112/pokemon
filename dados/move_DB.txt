@@ -7039,7 +7039,7 @@
             "effect_chance": null,
             "effect_changes": [],
             "effect_entries": ["Changes the weather to a sandstorm for five turns.  Pokémon that are not ground, rock, or steel take 1/16 their max HP at the end of every turn.  Every rock Pokémon's original Special Defense is raised by 50% for the duration of this effect.\n\nsolar beam's power is halved.\n\nmoonlight, morning sun, and synthesis only heal 1/4 the user's max HP."],
-            "flavor_text": "A five-turn sand\xad\nstorm is summoned\nto hurt all combatant\ntypes except Rock, \nGround, and Steel.",
+            "flavor_text": "A five-turn sand\nstorm is summoned\nto hurt all combatant\ntypes except Rock, \nGround, and Steel.",
             "flinch_chance": 0,
             "healing": 0,
             "id": 201,

@@ -11,11 +11,85 @@ class personagem:
 	var cidadeNatal:String
 	var pkms=[]
 
+class ataque:
+	
+	var nome: String
+	var accuracy: int
+	var ailment: String
+	var ailmentChance: int
+	var category: String
+	var critRate: int
+	var damageClass: String
+	var drain: int
+	var effectChance: int
+	var effectChanges= []
+	var effectEntries= []
+	var flavorText: String
+	var flinchChance: int
+	var healing: int
+	var id: int
+	var learnedByPokemon= []
+	var maxHits: int
+	var maxTurns: int
+	var minHits: int
+	var minTurns: int
+	var power: int
+	var pp: int
+	var priority: int
+	var statChance: int
+	var statChanges=[]
+	var target: String
+	var type: String
+	
+	func toString():
+		var resp=nome
+		resp+=" / "+ type
+		resp+=" / "+ damageClass
+		resp+= " / "+str(pp)+"PP"
+		return resp
+		
+	func validaInt(i):
+		if(!i):
+			return 0
+		return int(i)
+	
+	func carregaDoJson(json):
+		nome = json.get("name", "")
+		accuracy = validaInt(json.get("accuracy", 100))
+		ailment = str(json.get("ailment", "null"))
+		ailmentChance = validaInt(json.get("ailment_chance", 0))
+		category = str(json.get("category", ""))
+		critRate = validaInt(json.get("crit_rate", 0))
+		damageClass = str(json.get("damage_class", ""))
+		drain = validaInt(json.get("drain", 0))
+		effectChance = validaInt(json.get("effect_chance", 0))
+		effectChanges = json.get("effect_changes", [])
+		effectEntries = json.get("effect_entries", [])
+		flavorText = str(json.get("flavor_text", ""))
+		flinchChance = validaInt(json.get("flinch_chance", 0))
+		healing = validaInt(json.get("healing", 0))
+		id = validaInt(json.get("id", 0))
+		learnedByPokemon = json.get("learned_by_pokemon", [])
+		maxHits = validaInt(json.get("max_hits", 1))
+		maxTurns = validaInt(json.get("max_turns", 0))
+		minHits = validaInt(json.get("min_hits", 0))
+		minTurns = validaInt(json.get("min_turns", 0))
+		power = validaInt(json.get("power", 0))
+		pp = validaInt(json.get("pp", 5))
+		priority = validaInt(json.get("priority", 0))
+		statChance = validaInt(json.get("stat_chance", 0))
+		statChanges = json.get("stat_changes", [])
+		target = str(json.get("target", ""))
+		type = str(json.get("type", ""))
+		
+	func carregaPorId(ID):
+		carregaDoJson(Ferramentas.getMoveJson(ID))
+
 class pokemon:
 	var raca:String
 	var racaID:int
 	var apelido:String
-	var lv:int
+	var lv=1
 	var exp:int
 	var shiny:bool
 	var tipo = [0,0]
@@ -59,7 +133,7 @@ class pokemon:
 	var iv_sp_def:int
 	var iv_speed:int
 		
-	var ataques = [0,0,0,0]
+	var ataques = [null,null,null,null]
 	var sprites = [[null,null,null],[null,null,null],[null,null,null],null,null,null]
 	
 	var forca = [0,0,0,0]
@@ -72,6 +146,7 @@ class pokemon:
 	func toString():
 		var resp = "Espécie: " + raca + "\n"
 		resp += "Nome: " + apelido + "\n"
+		resp += "Nível: " + str(lv) + "\n"
 		resp += "HP: " + str(hp) + "\n"
 		resp += "Ataque: " + str(atak) + "\n"
 		resp += "Defesa: " + str(def) + "\n"
@@ -107,7 +182,10 @@ class pokemon:
 		i=0
 		for ataque in ataques:
 			i+=1
-			resp += "Ataque"+str(i)+": " + str(ataque) + "\n"
+			var str = "null"
+			if(ataque):
+				str=ataque.toString()
+			resp += "Ataque"+str(i)+": " + str + "\n"
 		if(i==0):
 			resp += "Ataques: Nenhum\n"
 		if(item):
@@ -139,6 +217,35 @@ class pokemon:
 		else:
 			apelido=novoApelido
 	
+	func carregaAtaquePorId(posi,id):
+		var move = ataque.new()
+		move.carregaPorId(id)
+		ataques[posi]=move
+	
+	func recebeListaAtaques(mode):
+		var lis=[]
+		match mode:
+			0:
+				lis+=json.get('movesFromLv',null)
+			1:
+				lis+=json.get('movesFromLearn',null)
+			2:
+				lis+=json.get('movesFromEgg',null)
+		return lis
+	
+	func recebeUltimosAtaques():
+		var atks=recebeListaAtaques(0)
+		var atksValidos=[]
+		for item in atks:
+			if(item[1]<=lv):
+				atksValidos.append(item)
+		if(atksValidos.size()<=0):
+			return
+		for i in 4:
+			var x=atksValidos.size()-i-1
+			if(x>=0):
+				carregaAtaquePorId(i,atksValidos[x][0])
+				
 	func getDadosFromJson():
 		
 		racaID = int(json.get("id", 0))

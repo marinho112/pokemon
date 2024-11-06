@@ -1,15 +1,14 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1730816957
+::res://::1730916011
 icon.svg::CompressedTexture2D::4959049660327054204::1726682565::1726682581::1::::<><>::
-main_node.tscn::PackedScene::641826591873654601::1730316663::0::1::::<><>::uid://cmhj6lcb4hwc1::::res://Nodes/Mapas/Cidades/map_pallet.tscn<>uid://62fe6fqrx58y::::res://Nodes/Objetos/personagem.tscn<>uid://cm6dekvtcwvxy::::res://Nodes/Menus/atlas_texture_Interface.tres<>res://Scripts/Objetos/globais/camera_2d.gd<>uid://bb81m6oegxnoi::::res://Nodes/Menus/atlas_texture_Interface_opcao.tres<>res://Scripts/Objetos/NPCs/option_screen_Npc.gd<>uid://chtork64v5qua::::res://assets/menus/Interface & Bag Screens.png
+main_node.tscn::PackedScene::641826591873654601::1730833791::0::1::::<><>::uid://cmhj6lcb4hwc1::::res://Nodes/Mapas/Cidades/map_pallet.tscn<>uid://62fe6fqrx58y::::res://Nodes/Objetos/personagem.tscn<>uid://cm6dekvtcwvxy::::res://Nodes/Menus/atlas_texture_Interface.tres<>res://Scripts/Objetos/globais/camera_2d.gd<>uid://bb81m6oegxnoi::::res://Nodes/Menus/atlas_texture_Interface_opcao.tres<>res://Scripts/Objetos/NPCs/option_screen_Npc.gd<>uid://chtork64v5qua::::res://assets/menus/Interface & Bag Screens.png
 README.md::TextFile::-1::1730816918::0::1::::<><>::
 ::res://assets/::1729079354
-::res://assets/menus/::1730827641
+::res://assets/menus/::1730827750
 HP Bars & In-battle Menu.png::CompressedTexture2D::796746678149086644::1728925751::1728925758::1::::<><>::
 Interface & Bag Screens.png::CompressedTexture2D::5304267421044005256::1727630646::1727630646::1::::<><>::
 mainMenu.png::CompressedTexture2D::3612242619511171682::1728927141::1728927141::1::::<><>::
 Pokemon Summary Menu.png::CompressedTexture2D::3979703359892099721::1729075650::1729075650::1::::<><>::
-subFundo120x64.png::CompressedTexture2D::7720617265463550882::1730827641::1730827641::1::::<><>::
 subFundo121x64.png::CompressedTexture2D::3617923862657744988::1730827405::1730827405::1::::<><>::
 subFundo240x144.png::CompressedTexture2D::3256972171663118476::1730818958::1730818958::1::::<><>::
 ::res://assets/menus/imagemBotoes/::1727818161
@@ -44,15 +43,15 @@ move_DB.txt::TextFile::-1::1728512980::0::1::::<><>::
 pokemon_DB.txt::TextFile::-1::1728832265::0::1::::<><>::
 ::res://Nodes/::1728912451
 ::res://Nodes/Mapas/::1727190502
-::res://Nodes/Mapas/Cidades/::1730316663
-map_pallet.tscn::PackedScene::5630160528797909342::1730316663::0::1::::<><>::res://Scripts/Mapas/baseMap.gd<>uid://bn6i3wvmobynf::::res://Nodes/TileSets/tileSet.tres<>uid://dswpj3th63wlv::::res://Nodes/TileSets/permissionTileSet.tres<>uid://c0te307o0nb2j::::res://Nodes/TileSets/eventsTileSet.tres
-::res://Nodes/Menus/::1730819506
+::res://Nodes/Mapas/Cidades/::1730833791
+map_pallet.tscn::PackedScene::5630160528797909342::1730833791::0::1::::<><>::res://Scripts/Mapas/baseMap.gd<>uid://bn6i3wvmobynf::::res://Nodes/TileSets/tileSet.tres<>uid://dswpj3th63wlv::::res://Nodes/TileSets/permissionTileSet.tres<>uid://c0te307o0nb2j::::res://Nodes/TileSets/eventsTileSet.tres
+::res://Nodes/Menus/::1730833806
 atlas_texture_Interface.tres::AtlasTexture::5679293054113592426::1727703404::0::1::::<><>::uid://chtork64v5qua::::res://assets/menus/Interface & Bag Screens.png
 atlas_texture_Interface_opcao.tres::AtlasTexture::2526335714595688368::1727703404::0::1::::<><>::uid://chtork64v5qua::::res://assets/menus/Interface & Bag Screens.png
 mainMenu.tscn::PackedScene::5121193107183092232::1729075005::0::1::::<><>::res://Scripts/Menus/main_menu.gd<>uid://ll7kins58l6c::::res://assets/menus/HP Bars & In-battle Menu.png<>uid://sovoy8yddp1e::::res://Nodes/Menus/opcaoMainMenu.tscn
-menu_pokemon.tscn::PackedScene::5564923507196896842::1730819506::0::1::::<><>::uid://bwx2ervlayqsf::::res://assets/menus/Pokemon Summary Menu.png<>res://Scripts/Menus/menu_pokemon.gd<>uid://c4w054i0bbo2s::::res://assets/menus/recursos/gender.png<>uid://o0rw0miyrnht::::res://Nodes/TileSets/atlas_texture_Tipos.tres<>uid://bmnx4dlcafmye::::res://assets/menus/subFundo240x144.png<>uid://dt7btrmiyw02::::res://Nodes/Menus/menu_pokemon.tres<>uid://bd720306al17j::::res://assets/pokemons/Pokemon 1st 3rd Generation.png
-opcaoMainMenu.tscn::PackedScene::1293601844637728572::1729075006::0::1::::<><>::uid://brp2dxchwcwus::::res://assets/menus/mainMenu.png
 menu_pokemon.tres::AtlasTexture::251735462565877829::1730819506::0::1::::<><>::uid://bwx2ervlayqsf::::res://assets/menus/Pokemon Summary Menu.png
+menu_pokemon.tscn::PackedScene::5564923507196896842::1730833806::0::1::::<><>::uid://bwx2ervlayqsf::::res://assets/menus/Pokemon Summary Menu.png<>res://Scripts/Menus/menu_pokemon.gd<>uid://c4w054i0bbo2s::::res://assets/menus/recursos/gender.png<>uid://o0rw0miyrnht::::res://Nodes/TileSets/atlas_texture_Tipos.tres<>uid://bmnx4dlcafmye::::res://assets/menus/subFundo240x144.png<>uid://dt7btrmiyw02::::res://Nodes/Menus/menu_pokemon.tres<>uid://bd720306al17j::::res://assets/pokemons/Pokemon 1st 3rd Generation.png<>uid://brssxbd2xd5jk::::res://assets/menus/subFundo121x64.png
+opcaoMainMenu.tscn::PackedScene::1293601844637728572::1729075006::0::1::::<><>::uid://brp2dxchwcwus::::res://assets/menus/mainMenu.png
 ::res://Nodes/Objetos/::1730313972
 personagem.tscn::PackedScene::2231904716976570618::1728938280::0::1::::<><>::res://Scripts/Objetos/personagem.gd<>uid://bh4bew2n36hwh::::res://assets/Personagens/Game Boy Advance - Pokemon FireRed LeafGreen - Hero.png
 ::res://Nodes/Objetos/eventos/::1728938280
@@ -67,21 +66,21 @@ eventsTileSet.tres::TileSet::6567079869052062683::1730817233::0::1::::<><>::uid:
 permissionTileSet.tres::TileSet::8469005874555530835::1730817233::0::1::::<><>::uid://cbo0rsq3qabny::::res://assets/recursos/permissões.png
 tileSet.tres::TileSet::3363408288053441095::1730817233::0::1::::<><>::uid://bucuuqrh7w7gy::::res://assets/Wold/gen_3_set.png<>uid://duc6vkdqwhpkb::::res://assets/Wold/venice_outdoors.png<>uid://qyuss1a0wdbl::::res://assets/Wold/full_johto_gen_3_tileset_essentials.png<>uid://wpnvgd8dtmk3::::res://assets/Wold/palletTree.png<>uid://bxwqb1jt0etb3::::res://assets/Wold/little_office.png<>uid://btq2lhwbi0s1m::::res://assets/Wold/snowy_train_outdoors.png<>uid://cpwu1x48gqqv1::::res://assets/Wold/thistle_town.png<>uid://nfswdob60j4s::::res://assets/Wold/tulip_mansion.png<>uid://c4fkvkx8a7bt7::::res://assets/Wold/venice_indoors.png
 ::res://Scripts/::1728927353
-::res://Scripts/Global/::1730313516
+::res://Scripts/Global/::1730833585
 Acoes.gd::GDScript::-1::1727905827::0::1::::<>Node<>::
-Classes.gd::GDScript::-1::1728912288::0::1::::<>Node<>::
+Classes.gd::GDScript::-1::1730833385::0::1::::<>Node<>::
 Eventos.gd::GDScript::-1::1727907856::0::1::::<>Node<>::
-Ferramentas.gd::GDScript::-1::1728912288::0::1::::<>Node<>::
-Options.gd::GDScript::-1::1730313516::0::1::::<>Node<>::
+Ferramentas.gd::GDScript::-1::1730833585::0::1::::<>Node<>::
+Options.gd::GDScript::-1::1730830881::0::1::::<>Node<>::
 TextoPlacas.gd::GDScript::-1::1727696387::0::1::::<>Node<>::
-VariaveisGlobais.gd::GDScript::-1::1728938686::0::1::::<>Node<>::
+VariaveisGlobais.gd::GDScript::-1::1730833256::0::1::::<>Node<>::
 ::res://Scripts/Mapas/::1727703538
 baseMap.gd::GDScript::-1::1727703538::0::1::::<>Node2D<>::
-::res://Scripts/Menus/::1730315746
+::res://Scripts/Menus/::1730833704
 main_menu.gd::GDScript::-1::1729074573::0::1::::<>Node2D<>::
-menu_pokemon.gd::GDScript::-1::1730315746::0::1::::<>Node2D<>::
-::res://Scripts/Objetos/::1730313995
-personagem.gd::GDScript::-1::1729074727::0::1::::<>CharacterBody2D<>::
+menu_pokemon.gd::GDScript::-1::1730833704::0::1::::<>Node2D<>::
+::res://Scripts/Objetos/::1730833806
+personagem.gd::GDScript::-1::1730833806::0::1::::<>CharacterBody2D<>::
 ::res://Scripts/Objetos/eventos/::1727907910
 evento_ao_tocar.gd::GDScript::-1::1727907910::0::1::::<><>::
 evento_msg_on_clik.gd::GDScript::-1::1727701168::0::1::::<><>::
