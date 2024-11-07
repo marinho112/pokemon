@@ -182,6 +182,45 @@ func getTipoNome(ID):
 		VG.TIPO_VOADOR:
 			return "Voador"
 	
+func getCaracteristicaID(nomeCaracteristica):
+	match nomeCaracteristica:
+		"forca":
+			return VG.ID_FORCA
+		"resistencia":
+			return VG.ID_RESISTENCIA
+		"elemento":
+			return VG.ID_ELEMENTO
+		"mente":
+			return VG.ID_MENTE
+		"aceleracao":
+			return VG.ID_ACELERACAO
+		"mobilidade":
+			return VG.ID_MOBILIDADE
+		"tamanho":
+			return VG.ID_CLASSE_TAMANHO
+	
+func getArmasID(nomeArma):
+	
+	match nomeArma:
+		"soco":
+			return VG.ID_SOCO
+		"chute":
+			return VG.ID_CHUTE
+		"garra":
+			return VG.ID_GARRA
+		"presa":
+			return VG.ID_PRESA
+		"espinho":
+			return VG.ID_ESPINHO
+		"rabo":
+			return VG.ID_RABO
+		"asa":
+			return VG.ID_ASA
+		"lingua":
+			return VG.ID_LINGUA
+		"giro":
+			return VG.ID_GIRO
+	
 func formataNome(nome):
 	var novoNome= nome.replace("-", " ")
 	var palavras = novoNome.split(" ")

@@ -9,6 +9,7 @@ const optLoad=preload('res://Nodes/Menus/opcaoMainMenu.tscn')
 var distancia
 var cursorBasePosition
 var velCursor=50
+var contImput=0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,7 +32,7 @@ func determinaOptsValidas():
 	listaOpcoes.append(Options.OptionOpcoes.new(get_parent().get_parent(),self))
 	listaOpcoes.append(Options.OptionExit.new(get_parent().get_parent(),self))
 
-func _input(event: InputEvent) -> void:
+func recebeImput() -> void:
 	if(get_parent().get_parent().pausado):
 		return
 	if(Input.is_action_just_pressed("B")):
@@ -41,9 +42,11 @@ func _input(event: InputEvent) -> void:
 	elif(Input.is_action_just_pressed("Cima")):
 		if(posicao>0):
 			posicao-=1
+			contImput=0.1
 	elif(Input.is_action_just_pressed("Baixo")):
 		if(posicao<(listaOpcoes.size()-1)):
 			posicao+=1
+			contImput=0.1
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,6 +54,10 @@ func _process(delta: float) -> void:
 	pass
 	
 func executa(delta) -> void:
+	if(contImput<=0):
+		recebeImput()
+	else:
+		contImput-=delta
 	$Cursor.position=Vector2($Cursor.position[0]+velCursor*delta,cursorBasePosition[1]+(distancia*posicao))
 	if(($Cursor.position[0]>=variMaxima+cursorBasePosition[0])and(velCursor>0)):
 		velCursor*=-1

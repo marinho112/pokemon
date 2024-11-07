@@ -2577,6 +2577,8 @@
             "max_turns": null,
             "min_hits": null,
             "min_turns": null,
+			"scales":[["elemento",100]],
+			"armas":[],
             "name": "leech-seed",
             "past_values": [],
             "power": null,

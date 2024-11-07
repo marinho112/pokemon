@@ -24,6 +24,8 @@ class ataque:
 	var effectChance: int
 	var effectChanges= []
 	var effectEntries= []
+	var scales=[]
+	var armas=[]
 	var flavorText: String
 	var flinchChance: int
 	var healing: int
@@ -65,6 +67,14 @@ class ataque:
 		effectChance = validaInt(json.get("effect_chance", 0))
 		effectChanges = json.get("effect_changes", [])
 		effectEntries = json.get("effect_entries", [])
+		scales  = []
+		var temp = json.get("scales", [])
+		for item in temp:
+			scales.append([Ferramentas.getCaracteristicaID(item[0]),item[1]])
+		armas  = []
+		temp = json.get("armas", [])
+		for item in temp:
+			armas.append(Ferramentas.getArmasID(item))
 		flavorText = str(json.get("flavor_text", ""))
 		flinchChance = validaInt(json.get("flinch_chance", 0))
 		healing = validaInt(json.get("healing", 0))
