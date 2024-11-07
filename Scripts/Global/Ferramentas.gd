@@ -144,6 +144,43 @@ func getTipoID(nomeTipo):
 			return VG.TIPO_VENENO
 		"flying":
 			return VG.TIPO_VOADOR
+			
+func getTipoNome(ID):
+	match ID:
+		VG.TIPO_AGUA:
+			return "Água"
+		VG.TIPO_DRAGAO:
+			return "Dragão"
+		VG.TIPO_ELETRICO:
+			return "Elétrico"
+		VG.TIPO_FANTASMA:
+			return "Fantasma"
+		VG.TIPO_FOGO:
+			return "Fogo"
+		VG.TIPO_GELO:
+			return "Gelo"
+		VG.TIPO_INSETO:
+			return "Insceto"
+		VG.TIPO_LUTADOR:
+			return "Lutador"
+		VG.TIPO_METAL:
+			return "Metal"
+		VG.TIPO_NORMAL:
+			return "Normal"
+		VG.TIPO_PEDRA:
+			return "Pedra"
+		VG.TIPO_PLANTA:
+			return "Planta"
+		VG.TIPO_PSIQUICO:
+			return "Psiquico"
+		VG.TIPO_SOMBRIO:
+			return "Sombrio"
+		VG.TIPO_TERRA:
+			return "Terra"
+		VG.TIPO_VENENO:
+			return "Venenoso"
+		VG.TIPO_VOADOR:
+			return "Voador"
 	
 func formataNome(nome):
 	var novoNome= nome.replace("-", " ")

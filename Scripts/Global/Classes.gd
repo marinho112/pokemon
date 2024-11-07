@@ -39,11 +39,11 @@ class ataque:
 	var statChance: int
 	var statChanges=[]
 	var target: String
-	var type: String
+	var type: int
 	
 	func toString():
-		var resp=nome
-		resp+=" / "+ type
+		var resp=Ferramentas.formataNome(nome)
+		resp+=" / "+ Ferramentas.getTipoNome(type)
 		resp+=" / "+ damageClass
 		resp+= " / "+str(pp)+"PP"
 		return resp
@@ -80,7 +80,11 @@ class ataque:
 		statChance = validaInt(json.get("stat_chance", 0))
 		statChanges = json.get("stat_changes", [])
 		target = str(json.get("target", ""))
-		type = str(json.get("type", ""))
+		# Tipo
+		if json.has("type"):
+			type = Ferramentas.getTipoID(json["type"])
+		#type = str(json.get("type", ""))
+		
 		
 	func carregaPorId(ID):
 		carregaDoJson(Ferramentas.getMoveJson(ID))
@@ -170,7 +174,12 @@ class pokemon:
 		resp += "Aceleração: " + str(aceleracao) + "\n"
 		resp += "Mobilidade: " + str(mobilidade) + "\n"
 
-		resp += "Tipos: " + str(tipo) + "\n"
+		resp += "Tipos: |" 
+		for item in tipo:
+			if item:
+				resp+=Ferramentas.getTipoNome(item)+"|"
+		resp += "\n"
+		
 		resp += "Nature: " + str(nature) + "\n"
 		resp += "Habilidades: " + str(habilidade['name']) + "\n"
 		var i=0

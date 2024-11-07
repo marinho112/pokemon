@@ -2,7 +2,39 @@ extends Node2D
 
 var pokemon
 var posicao=0
+var moveSelecionado=0
+var qtdAtaks=0
 
+
+func setTextEffect(texto):
+	var substrings = []
+	var index = 0
+	var length=20
+	var subString=""
+	for letra in texto.replace("\n"," "):
+		if(letra!=" "or(index>0)):
+			subString+=letra
+			index+=1
+		if(index==length):
+			substrings.append(subString)
+			subString=""
+			index = 0
+	$telaMovimentos/Effect1.text=substrings[0]
+	if(substrings.size()>1):
+		$telaMovimentos/Effect2.text=substrings[1]
+		$telaMovimentos/Effect2.visible=true
+	else:
+		$telaMovimentos/Effect2.visible=false
+	if(substrings.size()>2):
+		$telaMovimentos/Effect3.text=substrings[2]
+		$telaMovimentos/Effect3.visible=true
+	else:
+		$telaMovimentos/Effect3.visible=false
+	if(substrings.size()>3):
+		$telaMovimentos/Effect4.text=substrings[3]
+		$telaMovimentos/Effect4.visible=true
+	else:
+		$telaMovimentos/Effect4.visible=false
 
 func visibleOff():
 	$telaAtributos.visible=false
@@ -11,7 +43,7 @@ func visibleOff():
 	$telaDescricao.visible=false
 	$pokemonScreem/Conteudo.visible=true
 	
-	
+
 func defPosicao():
 	match posicao:
 		0:
@@ -87,12 +119,37 @@ func definePokemonScreem():
 	$pokemonScreem/Cabecalho/editEspecie.text=Ferramentas.formataNome(pokemon.raca)
 	$pokemonScreem/Cabecalho/editLV.text="LV."+str(pokemon.lv)
 
+func defineMovimentoSelecionado():
+	var movimento=pokemon.ataques[moveSelecionado]
+	var strTemp="---"
+	if(movimento.power>0):
+		strTemp=str(movimento.power)
+	$telaMovimentos/Power.text=strTemp
+	strTemp="---"
+	if(movimento.accuracy>0):
+		strTemp=str(movimento.accuracy)
+	$telaMovimentos/Accuracy.text=strTemp
+	setTextEffect(movimento.flavorText)
+
+func defineTelaMovimentos():
+	qtdAtaks=0
+	for i in 4:
+		var atk=pokemon.ataques[i]
+		if(atk!=null):
+			qtdAtaks+=1 
+			var tela=$telaMovimentos.get_node("move"+str(i+1))
+			tela.get_node('Tipo').frame=atk.type
+			tela.get_node('Nome').text=Ferramentas.formataNome(atk.nome)
+			tela.get_node('PP').text="PP "+str(atk.pp)
+	if(qtdAtaks>0):
+		defineMovimentoSelecionado()
+
 func definePokemon(pkm):
 	if(pkm!=null):
 		pokemon=pkm
 		
 	defineTelaDescricao()
 	defineTelaAtributos()
-	
+	defineTelaMovimentos()
 	definePokemonScreem()
 	
