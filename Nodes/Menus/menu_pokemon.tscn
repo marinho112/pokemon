@@ -287,40 +287,40 @@ text = "100"
 
 [node name="Effect1" type="TextEdit" parent="telaMovimentos"]
 offset_left = -110.0
-offset_top = 7.0
-offset_right = 70.0
-offset_bottom = 37.0
-scale = Vector2(0.55, 0.55)
+offset_top = 9.0
+offset_right = 140.0
+offset_bottom = 39.0
+scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
-text = "0123456789ABCDEFGH"
+text = "0123456789ABCDEFGHIJKLMNO"
 
 [node name="Effect2" type="TextEdit" parent="telaMovimentos"]
 offset_left = -110.0
-offset_top = 21.0
-offset_right = 70.0
-offset_bottom = 51.0
-scale = Vector2(0.55, 0.55)
+offset_top = 23.0
+offset_right = 140.0
+offset_bottom = 53.0
+scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
 text = "0123456789ABCDEFGH"
 
 [node name="Effect3" type="TextEdit" parent="telaMovimentos"]
 offset_left = -110.0
-offset_top = 35.0
-offset_right = 70.0
-offset_bottom = 65.0
-scale = Vector2(0.55, 0.55)
+offset_top = 37.0
+offset_right = 140.0
+offset_bottom = 67.0
+scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
 text = "0123456789ABCDEFGH"
 
 [node name="Effect4" type="TextEdit" parent="telaMovimentos"]
 offset_left = -110.0
-offset_top = 49.0
-offset_right = 70.0
-offset_bottom = 79.0
-scale = Vector2(0.55, 0.55)
+offset_top = 51.0
+offset_right = 140.0
+offset_bottom = 81.0
+scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_c280g")
 text = "0123456789ABCDEFGH"

@@ -7,3 +7,4 @@ res://Scripts/Global/Classes.gd
 res://Nodes/Mapas/Cidades/map_pallet.tscn
 res://main_node.tscn
 res://Scripts/Global/Ferramentas.gd
+res://Scripts/Global/Options.gd

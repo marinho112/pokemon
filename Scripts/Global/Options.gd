@@ -45,11 +45,9 @@ class OptionPokemon extends Option:
 		var camera=personagem.get_node("Camera2D")
 		camera.add_child(menu)
 		menu.z_index=10
-		#menu.definePokemon(0)
 		menu.ajustaTamanho(100)
 		if(personagem.personagemInfo.pkms.size()>0):
-			menu.definePokemon(personagem.personagemInfo.pkms[0]) 
-			
+			menu.definePokemon(personagem.personagemInfo.pkms[0])
 		personagem.pilhaAcoes.insert(0,menu)
 		
 

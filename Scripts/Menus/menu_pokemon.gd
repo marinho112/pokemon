@@ -6,10 +6,11 @@ var moveSelecionado=0
 var qtdAtaks=0
 
 
+	
 func setTextEffect(texto):
 	var substrings = []
 	var index = 0
-	var length=20
+	var length=28
 	var subString=""
 	for letra in texto.replace("\n"," "):
 		if(letra!=" "or(index>0)):
@@ -60,7 +61,12 @@ func defPosicao():
 			$telaMovimentos.visible=true
 			$pokemonScreem/Conteudo.visible=false
 
+
+func _ready() -> void:
+	defPosicao()
+
 func _input(event: InputEvent) -> void:
+	var posicaoOld=posicao
 	if(Input.is_action_just_pressed("Direita")):
 		posicao+=1
 	elif(Input.is_action_just_pressed("Esquerda")):
@@ -70,8 +76,8 @@ func _input(event: InputEvent) -> void:
 		posicao=0
 	if(posicao<0):
 		posicao=3
-	
-	defPosicao()
+	if(posicaoOld!=posicao):
+		defPosicao()
 	
 		
 func executa(delta: float):
@@ -152,4 +158,3 @@ func definePokemon(pkm):
 	defineTelaAtributos()
 	defineTelaMovimentos()
 	definePokemonScreem()
-	
