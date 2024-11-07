@@ -6,7 +6,7 @@ var moveSelecionado=0
 var qtdAtaks=0
 var contador=0
 var contImput=0
-var selecaoAtaques=true
+var selecaoAtaques=false
 var moveTravado=null
 
 func setTextEffect(texto):
@@ -63,10 +63,29 @@ func defPosicao():
 			$telaMovimentos.visible=true
 			$pokemonScreem/Conteudo.visible=false
 
+func movimentaCursor(movimento):
+	moveSelecionado+=movimento
+	if(moveSelecionado>qtdAtaks-1):
+		moveSelecionado=0
+	if(moveSelecionado<0):
+		moveSelecionado=qtdAtaks-1
+	desenhaCursor()
+	contImput=1
+
+func movimentaTela(movimento):
+	posicao+=movimento
+	if(posicao>3):
+		posicao=0
+	if(posicao<0):
+		posicao=3
+	defPosicao()
+	contImput=1
+	
+	
 func desenhaCursor():
 	if(moveTravado!=null):
 		$telaMovimentos/CursorTrava.visible=true
-		$telaMovimentos/Cursor.position.y=-55+(28*moveTravado)
+		$telaMovimentos/CursorTrava.position.y=-55+(28*moveTravado)
 	else:
 		$telaMovimentos/CursorTrava.visible=false
 	$telaMovimentos/Cursor.position.y=-55+(28*moveSelecionado)
@@ -74,37 +93,63 @@ func desenhaCursor():
 
 func _ready() -> void:
 	defPosicao()
+	$telaMovimentos/Cursor.visible=false
+
+func exclue():
+	get_parent().get_parent().pilhaAcoes.remove_at(0)
+	queue_free()
+
+func trocaMove(x,y):
+	if(x!=y):
+		var aux=pokemon.ataques[x]
+		pokemon.ataques[x]=pokemon.ataques[y]
+		pokemon.ataques[y]=aux
+		defineTelaMovimentos()
 
 func recebeImput():
-	var posicaoOld=posicao
-	if(Input.is_action_just_pressed("Direita")):
-		posicao+=1
-	elif(Input.is_action_just_pressed("Esquerda")):
-		posicao-=1
-	if(posicao>3):
-		posicao=0
-	if(posicao<0):
-		posicao=3
-	if(posicaoOld!=posicao):
-		defPosicao()
-		contImput=5
-		return
+	if(!selecaoAtaques):
+		if(Input.is_action_just_pressed("Direita")):
+			movimentaTela(1)
+			return
+		elif(Input.is_action_just_pressed("Esquerda")):
+			movimentaTela(-1)
+			return
+		
 		
 	if((posicao==3)and selecaoAtaques):
-		posicaoOld=moveSelecionado
 		if(Input.is_action_just_pressed("Cima")):
-			moveSelecionado-=1
+			movimentaCursor(-1)
+			return
 		elif(Input.is_action_just_pressed("Baixo")):
-			moveSelecionado+=1
-		if(moveSelecionado>qtdAtaks-1):
-			moveSelecionado=0
-		if(moveSelecionado<0):
-			moveSelecionado=qtdAtaks-1
-			
-		if(posicaoOld!=moveSelecionado):
-			desenhaCursor()
-			contImput=1
+			movimentaCursor(1)
+			return
+	
+	if(Input.is_action_just_pressed("A")):
+		if(posicao==3):
+			if(selecaoAtaques):
+				if(moveTravado==null):
+					moveTravado=moveSelecionado
+				else:
+					trocaMove(moveSelecionado,moveTravado)
+					moveTravado=null
+				desenhaCursor()
+			else:
+				selecaoAtaques=true
+				$telaMovimentos/Cursor.visible=true
+		return
 		
+	if(Input.is_action_just_pressed("B")):
+		if(selecaoAtaques):
+			if(moveTravado==null):
+				selecaoAtaques=false
+				$telaMovimentos/Cursor.visible=false
+				moveSelecionado=0
+			else:
+				moveTravado=null
+			desenhaCursor()
+		else:
+			exclue()
+	
 func executa(delta: float):
 	if(contImput<=0):
 		recebeImput()
@@ -112,10 +157,11 @@ func executa(delta: float):
 		contador=0
 		if(contImput>0):
 			contImput-=1
-		if($telaMovimentos/Cursor.scale>=Vector2(1,1)):
-			$telaMovimentos/Cursor.scale=Vector2(0.95,0.95)
-		else:
-			$telaMovimentos/Cursor.scale=Vector2(1,1)
+		if(selecaoAtaques):
+			if($telaMovimentos/Cursor.scale>=Vector2(1,1)):
+				$telaMovimentos/Cursor.scale=Vector2(0.95,0.95)
+			else:
+				$telaMovimentos/Cursor.scale=Vector2(1,1)
 	else:
 		contador+=delta
 		
