@@ -51,6 +51,14 @@ const ID_ACELERACAO = 4
 const ID_MOBILIDADE = 5
 const ID_CLASSE_TAMANHO=6
 
+#IDADES STR
+
+const IDADE_BABY="Bebê"
+const IDADE_KID="Criança"
+const IDADE_YOUNG="Jovem"
+const IDADE_ADULT="Adulto"
+const IDADE_OLD="Maduro"
+
 #Armas
 
 const ARMA_SOCO = "ARMA_SOCO"

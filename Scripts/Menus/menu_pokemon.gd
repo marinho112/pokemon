@@ -2,11 +2,12 @@ extends Node2D
 
 var pokemon
 var posicao=0
-var moveSelecionado=0
+var optSelecionada=0
 var qtdAtaks=0
 var contador=0
 var contImput=0
 var selecaoAtaques=false
+var selecaoCaracteristicas=false
 var moveTravado=null
 
 func setTextEffect(texto):
@@ -64,11 +65,14 @@ func defPosicao():
 			$pokemonScreem/Conteudo.visible=false
 
 func movimentaCursor(movimento):
-	moveSelecionado+=movimento
-	if(moveSelecionado>qtdAtaks-1):
-		moveSelecionado=0
-	if(moveSelecionado<0):
-		moveSelecionado=qtdAtaks-1
+	var limite= 7
+	if(selecaoAtaques):
+		limite=qtdAtaks-1
+	optSelecionada+=movimento
+	if(optSelecionada>limite):
+		optSelecionada=0
+	if(optSelecionada<0):
+		optSelecionada=limite
 	desenhaCursor()
 	contImput=1
 
@@ -80,20 +84,27 @@ func movimentaTela(movimento):
 		posicao=3
 	defPosicao()
 	contImput=1
-	
-	
+		
 func desenhaCursor():
-	if(moveTravado!=null):
-		$telaMovimentos/CursorTrava.visible=true
-		$telaMovimentos/CursorTrava.position.y=-55+(28*moveTravado)
-	else:
+	if(selecaoAtaques):
+		if(moveTravado!=null):
+			$telaMovimentos/CursorTrava.visible=true
+			$telaMovimentos/CursorTrava.position.y=-55+(28*moveTravado)
+		$telaMovimentos/Cursor.position.y=-55+(28*optSelecionada)
+		defineMovimentoSelecionado()
+	elif(selecaoCaracteristicas):
+		$telaCaracteristicas/telaMaior/Cursor.position.y=-48+(15*optSelecionada)
+		defineDescricaoCaracteristica()
+	if(moveTravado==null):
 		$telaMovimentos/CursorTrava.visible=false
-	$telaMovimentos/Cursor.position.y=-55+(28*moveSelecionado)
-	defineMovimentoSelecionado()
+
+func defineDescricaoCaracteristica():
+	pass
 
 func _ready() -> void:
 	defPosicao()
 	$telaMovimentos/Cursor.visible=false
+	$telaCaracteristicas/telaMaior/Cursor.visible=false
 
 func exclue():
 	get_parent().get_parent().pilhaAcoes.remove_at(0)
@@ -107,7 +118,7 @@ func trocaMove(x,y):
 		defineTelaMovimentos()
 
 func recebeImput():
-	if(!selecaoAtaques):
+	if(!(selecaoAtaques or selecaoCaracteristicas)):
 		if(Input.is_action_just_pressed("Direita")):
 			movimentaTela(1)
 			return
@@ -116,7 +127,7 @@ func recebeImput():
 			return
 		
 		
-	if((posicao==3)and selecaoAtaques):
+	if(((posicao==3)and selecaoAtaques)or((posicao==2)and selecaoCaracteristicas)):
 		if(Input.is_action_just_pressed("Cima")):
 			movimentaCursor(-1)
 			return
@@ -128,14 +139,18 @@ func recebeImput():
 		if(posicao==3):
 			if(selecaoAtaques):
 				if(moveTravado==null):
-					moveTravado=moveSelecionado
+					moveTravado=optSelecionada
 				else:
-					trocaMove(moveSelecionado,moveTravado)
+					trocaMove(optSelecionada,moveTravado)
 					moveTravado=null
 				desenhaCursor()
 			else:
 				selecaoAtaques=true
+				desenhaCursor()
 				$telaMovimentos/Cursor.visible=true
+		elif(posicao==2):
+			defineSelecaoCaranteristicas(!selecaoCaracteristicas)
+			
 		return
 		
 	if(Input.is_action_just_pressed("B")):
@@ -143,13 +158,22 @@ func recebeImput():
 			if(moveTravado==null):
 				selecaoAtaques=false
 				$telaMovimentos/Cursor.visible=false
-				moveSelecionado=0
+				optSelecionada=0
 			else:
 				moveTravado=null
 			desenhaCursor()
+		elif(selecaoCaracteristicas):
+			defineSelecaoCaranteristicas(false)
 		else:
 			exclue()
+
+func defineSelecaoCaranteristicas(mode):
+	optSelecionada=0
+	desenhaCursor()
+	selecaoCaracteristicas=mode
+	$telaCaracteristicas/telaMaior/Cursor.visible=mode
 	
+
 func executa(delta: float):
 	if(contImput<=0):
 		recebeImput()
@@ -162,11 +186,14 @@ func executa(delta: float):
 				$telaMovimentos/Cursor.scale=Vector2(0.95,0.95)
 			else:
 				$telaMovimentos/Cursor.scale=Vector2(1,1)
+		elif(selecaoCaracteristicas):
+			if($telaCaracteristicas/telaMaior/Cursor.scale>=Vector2(0.95,0.5)):
+				$telaCaracteristicas/telaMaior/Cursor.scale=Vector2(0.9,0.475)
+			else:
+				$telaCaracteristicas/telaMaior/Cursor.scale=Vector2(0.95,0.5)
 	else:
 		contador+=delta
-		
-	
-	
+			
 func ajustaTamanho(proporcao):
 	var tamanho=Vector2($telaDescricao/fundo.texture.region.size)
 	var tamanhoDesejado=Vector2(get_parent().tamanho)
@@ -176,8 +203,8 @@ func ajustaTamanho(proporcao):
 func defineTelaDescricao():
 	$telaDescricao/editNo.text=Ferramentas.formataNumero(pokemon.racaID)
 	$telaDescricao/editName.text=pokemon.apelido
-	$telaDescricao/editOT.text="TesteOT"
-	$telaDescricao/editIDNo.text="TesteIDNo"
+	$telaDescricao/editOT.text=Ferramentas.getIdadeString(pokemon.idade)
+	$telaDescricao/editIDNo.text=str(pokemon.idUnico)
 	if(pokemon.item):
 		$telaDescricao/editItem.text=Ferramentas.formataNome(pokemon.item['name'])
 	else:
@@ -190,12 +217,12 @@ func defineTelaDescricao():
 		$telaDescricao/Tipo2.frame=pokemon.tipo[1]
 
 func defineTelaAtributos():
-	$telaAtributos/editHP.text=str(pokemon.getVidaAtual())+"/"+str(pokemon.getAtributoReal(VG.ATRIBUTO_VIDA))
-	$telaAtributos/editAtk.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_ATAQUE))
-	$telaAtributos/editDef.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_DEFESA))
-	$telaAtributos/editSpAtk.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_ESPECIAL_ATAQUE))
-	$telaAtributos/editSpDef.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_ESPECIAL_DEFESA))
-	$telaAtributos/editSpeed.text=str(pokemon.getAtributoReal(VG.ATRIBUTO_VELOCIDADE))
+	$telaAtributos/editHP.text=str(pokemon.getVidaAtual())+"/"+str(pokemon.hp)
+	$telaAtributos/editAtk.text=str(pokemon.atak)
+	$telaAtributos/editDef.text=str(pokemon.def)
+	$telaAtributos/editSpAtk.text=str(pokemon.sp_atak)
+	$telaAtributos/editSpDef.text=str(pokemon.sp_def)
+	$telaAtributos/editSpeed.text=str(pokemon.speed)
 	$telaAtributos/editExp.text=str(pokemon.exp)
 	$telaAtributos/editNextLv.text=str("CALCULAR NO FUTURO")
 	$telaAtributos/editAbility.text=pokemon.getHabilidadeNome()
@@ -227,7 +254,7 @@ func defineArmas(movimento):
 			arma.visible=false
 
 func defineMovimentoSelecionado():
-	var movimento=pokemon.ataques[moveSelecionado]
+	var movimento=pokemon.ataques[optSelecionada]
 	var strTemp="---"
 	if(movimento.power>0):
 		strTemp=str(movimento.power)
@@ -235,6 +262,7 @@ func defineMovimentoSelecionado():
 	strTemp="---"
 	if(movimento.accuracy>0):
 		strTemp=str(movimento.accuracy)
+	$telaMovimentos/Tipo.frame=movimento.damageClass
 	$telaMovimentos/Accuracy.text=strTemp
 	setTextEffect(movimento.flavorText)
 	defineScales(movimento)
@@ -253,11 +281,24 @@ func defineTelaMovimentos():
 	if(qtdAtaks>0):
 		desenhaCursor()
 
+func defineTelaCaracteristicas():
+	$telaCaracteristicas/telaMaior/editPeso.text="Peso: "+str(pokemon.getPeso()/10.0)+"Kg"
+	$telaCaracteristicas/telaMaior/editTamanho.text="Tamanho: "+str(pokemon.getTamanho()/10.0)+"m"
+	$telaCaracteristicas/telaMaior/editClasseTamanho.text="Class. Tamanho: "+str(pokemon.getClasseDeTamanho())
+	$telaCaracteristicas/telaMaior/editForca.text="Força: "+str(pokemon.getCaracteristica(VG.CARACTERISTICA_FORCA))
+	$telaCaracteristicas/telaMaior/editResistencia.text="Resistência: "+str(pokemon.getCaracteristica(VG.CARACTERISTICA_RESISTENCIA))
+	$telaCaracteristicas/telaMaior/editElemento.text="Elemento: "+str(pokemon.getCaracteristica(VG.CARACTERISTICA_ELEMENTO))
+	$telaCaracteristicas/telaMaior/editMente.text="Mente: "+str(pokemon.getCaracteristica(VG.CARACTERISTICA_MENTE))
+	$telaCaracteristicas/telaMaior/editAceletracao.text="Aceleração: "+str(pokemon.getCaracteristica(VG.CARACTERISTICA_ACELERACAO))
+	$telaCaracteristicas/telaMaior/editMobilidade.text="Mobilidade: "+str(pokemon.getCaracteristica(VG.CARACTERISTICA_MOBILIDADE))
+
 func definePokemon(pkm):
 	if(pkm!=null):
 		pokemon=pkm
-		
+	
 	defineTelaDescricao()
 	defineTelaAtributos()
+	defineTelaCaracteristicas()
 	defineTelaMovimentos()
+	defineMovimentoSelecionado()
 	definePokemonScreem()

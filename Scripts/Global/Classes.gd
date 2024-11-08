@@ -19,7 +19,7 @@ class ataque:
 	var ailmentChance: int
 	var category: String
 	var critRate: int
-	var damageClass: String
+	var damageClass: int
 	var drain: int
 	var effectChance: int
 	var effectChanges= []
@@ -46,7 +46,7 @@ class ataque:
 	func toString():
 		var resp=Ferramentas.formataNome(nome)
 		resp+=" / "+ Ferramentas.getTipoNome(type)
-		resp+=" / "+ damageClass
+		resp+=" / "+ Ferramentas.getNomeClaseDano(damageClass)
 		resp+= " / "+str(pp)+"PP"
 		return resp
 		
@@ -62,7 +62,7 @@ class ataque:
 		ailmentChance = validaInt(json.get("ailment_chance", 0))
 		category = str(json.get("category", ""))
 		critRate = validaInt(json.get("crit_rate", 0))
-		damageClass = str(json.get("damage_class", ""))
+		damageClass = Ferramentas.getClaseDanoID(json.get("damage_class", ""))
 		drain = validaInt(json.get("drain", 0))
 		effectChance = validaInt(json.get("effect_chance", 0))
 		effectChanges = json.get("effect_changes", [])
@@ -100,6 +100,9 @@ class ataque:
 		carregaDoJson(Ferramentas.getMoveJson(ID))
 
 class pokemon:
+	const maxTreino=100
+	
+	var idUnico:int
 	var raca:String
 	var racaID:int
 	var apelido:String
@@ -121,6 +124,7 @@ class pokemon:
 	var idade=0
 	var idadeMin=0
 	var idadeMax=500
+	var listaEvolucoes=[]
 	var lvMinEvolui=100
 	var lvMaxEvolui=100 
 	var armas=[]
@@ -157,6 +161,126 @@ class pokemon:
 	var aceleracao= [0,0,0,0]
 	var mobilidade= [0,0,0,0]
 	
+	func _init() -> void:
+		idUnico=0
+	
+	func getIdadeAleatoria():
+		var variIdade = idadeMax-idadeMin
+		idade= int(idadeMin + randi()%variIdade)
+	
+	func getIdadeAleatoriaPorLV():
+		var variIdade = (idadeMax-idadeMin)/(lvMaxEvolui-lv)
+		idade= int(idadeMin + randi()%variIdade)
+	
+	func calculaBaseStats(BASE,EV,IV):
+		return int(((2*BASE)+IV+(EV/4))*lv/100)
+	
+	func calculaHP():
+		var baseHp=int(json.get("hp", 1))
+		if(baseHp==1):
+			return 1
+		return calculaBaseStats(baseHp,ev_hp,iv_hp)+lv+10
+		
+	func calculaStat(stat):
+		var natureBonus=0
+		var antesDaNature=0
+		match(stat):
+			VG.ATRIBUTO_ATAQUE:
+				antesDaNature=calculaBaseStats(int(json.get("attack", 1)),ev_atak,iv_atak)+5
+			VG.ATRIBUTO_DEFESA:
+				antesDaNature=calculaBaseStats(int(json.get("defense", 1)),ev_def,iv_def)+5
+			VG.ATRIBUTO_ESPECIAL_ATAQUE:
+				antesDaNature=calculaBaseStats(int(json.get("sp_attack", 1)),ev_sp_atak,iv_sp_atak)+5
+			VG.ATRIBUTO_ESPECIAL_DEFESA:
+				antesDaNature=calculaBaseStats(int(json.get("sp_defense", 1)),ev_sp_def,iv_sp_def)+5
+			VG.ATRIBUTO_VELOCIDADE:
+				antesDaNature=calculaBaseStats(int(json.get("speed", 1)),ev_speed,iv_speed)+5
+		if(nature[1]==stat):
+			natureBonus+=10
+		if(nature[2]==stat):
+			natureBonus-=10
+		natureBonus*=antesDaNature/100
+		
+		return int(antesDaNature+natureBonus)
+	
+	func calculaAtributosPokemon():
+		hp=calculaHP()
+		atak=calculaStat(VG.ATRIBUTO_ATAQUE)
+		def=calculaStat(VG.ATRIBUTO_DEFESA)
+		sp_atak=calculaStat(VG.ATRIBUTO_ESPECIAL_ATAQUE)
+		sp_def=calculaStat(VG.ATRIBUTO_ESPECIAL_DEFESA)
+		speed=calculaStat(VG.ATRIBUTO_VELOCIDADE)
+		
+	func getIV():
+		var IV=[randi()%32,randi()%32,randi()%32,randi()%32,randi()%32,randi()%32]
+		if(shiny):
+			IV=[31,31,31,31,31,31]
+		return IV
+	
+	func aplicaIV(IV):
+		iv_hp=IV[0]
+		iv_atak=IV[1]
+		iv_def=IV[2]
+		iv_sp_atak=IV[3]
+		iv_sp_def=IV[4]
+		iv_speed=IV[5]
+	
+	func getIVBasico():
+		aplicaIV(getIV())
+	
+	func getIVLucky():
+		var matrizIV=[]
+		var final=[]
+		for i in 4:
+			matrizIV.append(getIV())
+		for i in 6:
+			final[i]=maxi(maxi(matrizIV[0][i],matrizIV[1][i]),maxi(matrizIV[2][i],matrizIV[3][i]))
+		aplicaIV(final)
+	
+	func getTotalEV():
+		return ev_atak+ev_def+ev_hp+ev_speed+ev_sp_atak+ev_sp_def
+	
+	func getEV(stat,value):
+		if(getTotalEV()>=510):
+			return
+		match(stat):
+			VG.ATRIBUTO_VIDA:
+				ev_hp+=value
+				if(ev_hp>255):
+					ev_hp=255
+				if(getTotalEV()>510):
+					ev_hp-=getTotalEV()-510
+			VG.ATRIBUTO_ATAQUE:
+				ev_atak+=value
+				if(ev_atak>255):
+					ev_atak=255
+				if(getTotalEV()>510):
+					ev_atak-=getTotalEV()-510
+			VG.ATRIBUTO_DEFESA:
+				ev_def+=value
+				if(ev_def>255):
+					ev_def=255
+				if(getTotalEV()>510):
+					ev_def-=getTotalEV()-510
+			VG.ATRIBUTO_ESPECIAL_ATAQUE:
+				ev_sp_atak+=value
+				if(ev_sp_atak>255):
+					ev_sp_atak=255
+				if(getTotalEV()>510):
+					ev_sp_atak-=getTotalEV()-510
+			VG.ATRIBUTO_ESPECIAL_DEFESA:
+				ev_sp_def+=value
+				if(ev_sp_def>255):
+					ev_sp_def=255
+				if(getTotalEV()>510):
+					ev_sp_def-=getTotalEV()-510
+			VG.ATRIBUTO_VELOCIDADE:
+				ev_sp_def+=value
+				if(ev_sp_def>255):
+					ev_sp_def=255
+				if(getTotalEV()>510):
+					ev_sp_def-=getTotalEV()-510
+	
 	func toString():
 		var resp = "Espécie: " + raca + "\n"
 		resp += "Nome: " + apelido + "\n"
@@ -167,8 +291,8 @@ class pokemon:
 		resp += "Ataque Especial: " + str(sp_atak) + "\n"
 		resp += "Defesa Especial: " + str(sp_def) + "\n"
 		resp += "Velocidade: " + str(speed) + "\n"
-		resp += "Peso: " + str(peso) + " kg\n"
-		resp += "Altura: " + str(float(tamanho)/10) + " m\n"
+		resp += "Peso: " + str(peso/10.0) + " kg\n"
+		resp += "Altura: " + str(tamanho/10.0) + " m\n"
 		resp += "Felicidade: " + str(felicidade) + "\n"
 		resp += "Fome: " + str(fome) + "\n"
 		resp += "Idade: " + str(idade) + "\n"
@@ -176,7 +300,10 @@ class pokemon:
 		resp += "Idade Máxima: " + str(idadeMax) + "\n"
 		resp += "Nível Mínimo para Evoluir: " + str(lvMinEvolui) + "\n"
 		resp += "Nível Máximo para Evoluir: " + str(lvMaxEvolui) + "\n"
-
+		resp += "Evoluções: |"
+		for item in listaEvolucoes:
+			resp += item[0]['name']+"|"
+		resp +="\n"
 		resp += "Força: " + str(forca) + "\n"
 		resp += "Resistência: " + str(resistencia) + "\n"
 		resp += "Mente: " + str(mente) + "\n"
@@ -238,6 +365,7 @@ class pokemon:
 	
 	func carregaAtaquePorId(posi,id):
 		var move = ataque.new()
+		print(id)
 		move.carregaPorId(id)
 		ataques[posi]=move
 	
@@ -286,10 +414,24 @@ class pokemon:
 			for i in range(min(json["types"].size(), 2)):
 				tipo[i] = Ferramentas.getTipoID(json["types"][i])
 		
+		var evolution = Ferramentas.getEvolutionData(raca)
+		listaEvolucoes=[]
+		if(evolution!=null):
+			for item in evolution:
+				var evo =Ferramentas.getPokemonJsonFormName(item[0])
+				if(evo!=null):
+					listaEvolucoes.append([evo,item[1]])
+		getLvMinMax()
+	
 	func getRandomHabilit():
 		var habilidades = json.get("abilities", [])
-		if habilidades.size() > 0:
-			habilidade = Ferramentas.getHabilidadeJson(habilidades[randi()%habilidades.size()])
+		var listHab=[]
+		for item in habilidades:
+			var tmp = Ferramentas.getHabilidadeJson(item)
+			if(tmp!=null):
+				listHab.append(tmp)
+		if listHab.size() > 0:
+			habilidade = listHab[randi()%listHab.size()]
 	
 	func getRandomItem():
 		var held_items = json.get("held_items", [])
@@ -311,7 +453,40 @@ class pokemon:
 				caracteristica=aceleracao
 			VG.CARACTERISTICA_MOBILIDADE:
 				caracteristica=mobilidade
-		return caracteristica[1]+int(caracteristica[1]*caracteristica[2]/100)+caracteristica[3]
+		var calcCar=caracteristica[1]+caracteristica[3]
+		return calcCar+int(calcCar*caracteristica[2]/100)
+	
+	func getLvMinMax():
+		var filePath="res://dados/idade.txt"
+		var file = FileAccess.open(filePath, FileAccess.READ)
+		var cont=0
+		if file:
+			idadeMax=0
+			while not file.eof_reached():
+				var linha = file.get_line()
+				if(linha[0]!='#'):
+					var linaLista= linha.split(',')
+					for item in linaLista:
+						if(int(item) == racaID):
+							if(cont<5):
+								idadeMin=100*cont
+							else:
+								idadeMax=500
+						for evolucao in listaEvolucoes:
+							if(int(item)==evolucao[0]["id"]):
+								idadeMax=maxi(idadeMax,cont*100)
+								if(evolucao[1]["min_level"]!=null):
+									var lv = evolucao[1]["min_level"]
+									lvMinEvolui= int(lv*80/100)
+									lvMaxEvolui= int(lv*120/100)
+					cont+=1
+			file.close()
+			if(listaEvolucoes.size()<=0):
+				idadeMax=500
+		else:
+			print("Erro ao abrir o arquivo: ", filePath)
+		
+		
 	
 	func carregaCaracteristicas():
 		var caracteristicasJson=Ferramentas.getPokemonCaracteristicasJson(racaID)
@@ -324,7 +499,17 @@ class pokemon:
 			mobilidade[0]=caracteristicasJson['mobilidade']
 			calculaCaracteristicas()
 			return
-			
+	
+	func getTreinoCaracteristicaBasico():
+		var maximo= int(idade/20) +6
+		
+		forca[3]=randi()%maximo
+		resistencia[3]=randi()%maximo
+		elemento[3]=randi()%maximo
+		mente[3]=randi()%maximo
+		aceleracao[3]=randi()%maximo
+		mobilidade[3]=randi()%maximo
+	
 	func calculaCaracteristica(caracteristica):
 		const maxIdadeCalculavel=300
 		if(idade>=maxIdadeCalculavel):
@@ -344,26 +529,8 @@ class pokemon:
 		calculaCaracteristica(aceleracao)
 		calculaCaracteristica(mobilidade)
 	
-	func getAtributoReal(att):
-		var resp=0
-		match att:
-			VG.ATRIBUTO_ATAQUE:
-				resp=atak+int(ev_atak/4)+int((iv_atak+1)/2)
-			VG.ATRIBUTO_ESPECIAL_ATAQUE:
-				resp=sp_atak+int(ev_sp_atak/4)+int((iv_sp_atak+1)/2)
-			VG.ATRIBUTO_DEFESA:
-				resp=def+int(ev_def/4)+int((iv_def+1)/2)
-			VG.ATRIBUTO_ESPECIAL_DEFESA:
-				resp=sp_def+int(ev_sp_def/4)+int((iv_sp_def+1)/2)
-			VG.ATRIBUTO_VELOCIDADE:
-				resp=speed+int(ev_speed/4)+int((iv_speed+1)/2)
-			VG.ATRIBUTO_VIDA:
-				resp=hp+int(ev_hp/4)+int((iv_hp+1)/2)
-		
-		return resp
-	
 	func getVidaAtual():
-		var vidaAtual=getAtributoReal(VG.ATRIBUTO_VIDA)
+		var vidaAtual=hp
 		vidaAtual-=danoRecebido
 		if(vidaAtual<0):
 			return 0
@@ -373,13 +540,15 @@ class pokemon:
 		return int((forca[1]+resistencia[1])/10)
 	
 	func getVariacaoIdade():
-		var range= int(idadeMax-idadeMin/100)
+		var range= int((idadeMax-idadeMin)/100)
 		var variMax=120
-		var variMin=variMax-(range*30)
+		var variMin=variMax-(range*20)
 		if(range<=2):
 			variMin-=10
 			variMax-=10
-		return [variMin,variMax]
+		var aux= ((idade*variMax)-(idade*variMin))/(idadeMax-idadeMin)
+		var proporcao=int((variMax-variMin)/100*aux)+variMin
+		return proporcao-100
 	
 	func getPeso():
 		return int(peso*(80+getDesenvolvimento()+getVariacaoIdade())/100)
@@ -388,7 +557,7 @@ class pokemon:
 		return int(tamanho*(100+getVariacaoIdade())/100)
 		
 	func getClasseDeTamanho():
-		return int((pow(getPeso()*getTamanho(),0.28)*30)-10)
+		return int(((pow(getPeso()*getTamanho(),0.28)*30)/4)+10)
 
 	func temArma(arma):
 		for item in armas:
@@ -401,3 +570,15 @@ class pokemon:
 		
 	func getHabilidadeDescricao():
 		return "Ainda Não Foi Programado"
+		
+	func getPokemonBase():
+		getIdadeAleatoria()
+		carregaCaracteristicas()
+		getRandomHabilit()
+		getIVBasico()
+		getTreinoCaracteristicaBasico()
+		var itemChance = json.get("held_items", []).size()*5
+		if(randi()%100<itemChance):
+			getRandomItem()
+		recebeUltimosAtaques()
+		calculaAtributosPokemon()

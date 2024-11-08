@@ -5,8 +5,20 @@ const itemData="res://dados/item_DB.txt"
 const habilidadeData="res://dados/ability_DB.txt"
 const moveData='res://dados/move_DB.txt'
 const caracteristicasData='res://dados/caracteristicas_DB.txt'
+const evolutionData='res://dados/evolution_DB.txt'
 
-func getPokemonJsonFormName(name:float):
+func getIdadeString(val):
+	if(val>400):
+		return VG.IDADE_OLD
+	if(val>300):
+		return VG.IDADE_ADULT
+	if(val>200):
+		return VG.IDADE_YOUNG
+	if(val>100):
+		return VG.IDADE_KID
+	return VG.IDADE_BABY
+
+func getPokemonJsonFormName(name:String):
 	var file = FileAccess.open(pokemonData, FileAccess.READ)
 	var content = file.get_as_text()
 	
@@ -31,13 +43,14 @@ func getPokemonJson(id:int):
 		print("Erro ao abrir o arquivo: ", pokemonData)
 	return json
 
-func getPokemon(id:int):
+func getPokemon(id:int,lv = 1):
 	var pkm= Classes.pokemon.new()
 	var pkmJson=getPokemonJson(id)
 	if(pkmJson==null):
 		return false
 	pkm.json=pkmJson
 	pkm.getDadosFromJson()
+	pkm.lv=lv
 	
 	return pkm
 
@@ -108,6 +121,21 @@ func getPokemonCaracteristicasJson(id:int):
 			print("Erro ao abrir o arquivo: ", caracteristicasData)
 		return json
 
+func getEvolutionData(name:String):
+	var file = FileAccess.open(evolutionData, FileAccess.READ)
+	var json=null
+	if file:
+		var content = file.get_as_text()
+		
+		var jsonPai = JSON.new()
+		var finish = jsonPai.parse_string(content)
+		for item in finish['evolution']:
+			if(item[0]==name):
+				return item[1] 
+				break
+	else:
+		print("Erro ao abrir o arquivo: ", itemData)
+
 func getTipoID(nomeTipo):
 	match nomeTipo:
 		"water":
@@ -124,7 +152,7 @@ func getTipoID(nomeTipo):
 			return VG.TIPO_GELO
 		"bug":
 			return VG.TIPO_INSETO
-		"fight":
+		"fighting":
 			return VG.TIPO_LUTADOR
 		"steel":
 			return VG.TIPO_METAL
@@ -146,6 +174,7 @@ func getTipoID(nomeTipo):
 			return VG.TIPO_VOADOR
 			
 func getTipoNome(ID):
+	
 	match ID:
 		VG.TIPO_AGUA:
 			return "Água"
@@ -182,6 +211,24 @@ func getTipoNome(ID):
 		VG.TIPO_VOADOR:
 			return "Voador"
 	
+func getClaseDanoID(nomeClasse):
+	
+	match nomeClasse:
+		"physical":
+			return 0
+		"special":
+			return 1
+	return 2
+
+func getNomeClaseDano(ID):
+	
+	match ID:
+		0:
+			return "Físico"
+		1:
+			return "Especial"
+	return "Estatus"
+ 
 func getCaracteristicaID(nomeCaracteristica):
 	match nomeCaracteristica:
 		"forca":

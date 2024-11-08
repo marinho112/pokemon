@@ -24,11 +24,8 @@ func _ready():
 	$Camera2D/MSGScreen.visible=false;
 	$Camera2D/OptionScreen.visible=false;
 	posicionar()
-	var pkm= Ferramentas.getPokemon(3)
-	pkm.carregaCaracteristicas()
-	pkm.getRandomHabilit()
-	pkm.getRandomItem()
-	pkm.recebeUltimosAtaques()
+	var pkm= Ferramentas.getPokemon(123,36)
+	pkm.getPokemonBase()
 	personagemInfo.pkms.append(pkm)
 	pkm.imprime()
 
